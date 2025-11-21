@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ArchivedThis repository has been archived and is now part of https:&#x2F;&#x2F;github.com&#x2F;fancyapps&#x2F;ui FancyboxjQuery lightbox script for displaying images, videos and more.Touch enabled, responsive and fully c">
+  <meta name="description" content="Archived This repository has been archived and is now part of https:&#x2F;&#x2F;github.com&#x2F;fancyapps&#x2F;ui Fancybox jQuery lightbox script for displaying images, videos and more. Touch enabled, responsive and">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zhang Young&#39;s Blog">
 <meta property="og:url" content="http://example.com/lib/fancybox/README.html">
 <meta property="og:site_name" content="Zhang Young&#39;s Blog">
-<meta property="og:description" content="ArchivedThis repository has been archived and is now part of https:&#x2F;&#x2F;github.com&#x2F;fancyapps&#x2F;ui FancyboxjQuery lightbox script for displaying images, videos and more.Touch enabled, responsive and fully c">
+<meta property="og:description" content="Archived This repository has been archived and is now part of https:&#x2F;&#x2F;github.com&#x2F;fancyapps&#x2F;ui Fancybox jQuery lightbox script for displaying images, videos and more. Touch enabled, responsive and">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-31T13:29:59.268Z">
 <meta property="article:modified_time" content="2025-10-31T13:29:59.268Z">
@@ -227,17 +227,26 @@
       
       
       <div class="post-body">
-          <h1 id="Archived"><a href="#Archived" class="headerlink" title="Archived"></a>Archived</h1><p>This repository has been archived and is now part of <a target="_blank" rel="noopener" href="https://github.com/fancyapps/ui">https://github.com/fancyapps/ui</a></p>
-<h1 id="Fancybox"><a href="#Fancybox" class="headerlink" title="Fancybox"></a>Fancybox</h1><p>jQuery lightbox script for displaying images, videos and more.<br>Touch enabled, responsive and fully customizable.</p>
-<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><p>1. Add latest jQuery and Fancybox files</p>
+          <h1 id="archived">Archived</h1>
+<p>This repository has been archived and is now part of
+https://github.com/fancyapps/ui</p>
+<h1 id="fancybox">Fancybox</h1>
+<p>jQuery lightbox script for displaying images, videos and more. Touch
+enabled, responsive and fully customizable.</p>
+<h2 id="quick-start">Quick start</h2>
+<p>1. Add latest jQuery and Fancybox files</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/jquery.fancybox.min.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/path/to/jquery.fancybox.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>2. Create links</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span>=<span class="string">&quot;gallery&quot;</span> <span class="attr">href</span>=<span class="string">&quot;big_1.jpg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;small_1.jpg&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span>=<span class="string">&quot;gallery&quot;</span> <span class="attr">href</span>=<span class="string">&quot;big_2.jpg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;small_2.jpg&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>3. Enjoy!</p>
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Fancybox is licensed under the <a target="_blank" rel="noopener" href="http://choosealicense.com/licenses/gpl-3.0">GPLv3</a> license for all open source applications.<br>A commercial license is required for all commercial applications (including sites, themes and apps you plan to sell).</p>
-<p><a target="_blank" rel="noopener" href="http://fancyapps.com/">Read more about Fancybox license</a>.</p>
+<h2 id="license">License</h2>
+<p>Fancybox is licensed under the <a
+target="_blank" rel="noopener" href="http://choosealicense.com/licenses/gpl-3.0">GPLv3</a> license for
+all open source applications. A commercial license is required for all
+commercial applications (including sites, themes and apps you plan to
+sell).</p>
+<p><a target="_blank" rel="noopener" href="http://fancyapps.com/">Read more about Fancybox
+license</a>.</p>
 
       </div>
       
@@ -311,7 +320,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Archived"><span class="nav-number">1.</span> <span class="nav-text">Archived</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fancybox"><span class="nav-number">2.</span> <span class="nav-text">Fancybox</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-start"><span class="nav-number">2.1.</span> <span class="nav-text">Quick start</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">2.2.</span> <span class="nav-text">License</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#archived"><span class="nav-number">1.</span> <span class="nav-text">Archived</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fancybox"><span class="nav-number">2.</span> <span class="nav-text">Fancybox</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#quick-start"><span class="nav-number">2.1.</span> <span class="nav-text">Quick start</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#license"><span class="nav-number">2.2.</span> <span class="nav-text">License</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -378,12 +387,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">4 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
