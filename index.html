@@ -198,6 +198,182 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/23/%E4%B8%BB%E8%A7%82Bayes%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://p3-pc-sign.douyinpic.com/tos-cn-i-0813/oUenSFFAAAApA9JogEFUjENDkfoyDWxEAACCPI~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&lk3s=138a59ce&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1764432000&x-signature=4AGf%2Fp4vbmr%2FiCyYhtUPyoYuA9A%3D">
+      <meta itemprop="name" content="Zhang Young">
+      <meta itemprop="description" content="I'll seek my way with zeal unceasing.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang Young's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/11/23/%E4%B8%BB%E8%A7%82Bayes%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">主观Bayes方法</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-11-23 17:41:15 / 修改时间：19:04:07" itemprop="dateCreated datePublished" datetime="2025-11-23T17:41:15+08:00">2025-11-23</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="主观bayes方法">主观Bayes方法</h2>
+<h3 id="概率论基础">概率论基础</h3>
+<p><code>全概率公式</code>：<span
+class="math inline">$P(B)=\sum_{i=1}^n{P(A_i)\times
+P(B|A_i)}$</span></p>
+<p><code>Bayes定理</code>： <span
+class="math display">$$P(A_i|B)=\frac{P(A_i)\times
+P(B|A_i)}{\sum_{i=1}^n{P(A_i)\times P(B|A_i)}}$$</span></p>
+<h3 id="知识不确定性的表示">知识不确定性的表示</h3>
+在主观Bayes方法中，知识是用产生式表示，其形式为:
+<p style="text-align: center">
+IF E THEN (LS,LN) H
+</p>
+<p>其中，LS表示充分性度量，LN表示必要性度量。其数学形式分别为： <span
+class="math display">$$LS=\frac{P(E|H)}{P(E|\neg{H})}$$</span></p>
+<p><span class="math display">$$LN=\frac{1 -
+P(E|H)}{1-P(E|\neg{H})}$$</span>
+由LS和LN的形式，引入<code>几率函数</code>： <span
+class="math display">$$O(X)=\frac{P(X)}{1-P(X)}$$</span> 则可以证明：
+<span
+class="math display"><em>O</em>(<em>H</em>|<em>E</em>) = <em>L</em><em>S</em> ⋅ <em>O</em>(<em>H</em>)</span>
+<span
+class="math display"><em>O</em>(<em>H</em>|¬<em>E</em>) = <em>L</em><em>N</em> ⋅ <em>O</em>(<em>H</em>)</span>
+<strong>LS的性质</strong> - 当LS &gt; 1时，<span
+class="math inline"><em>O</em>(<em>H</em>|<em>E</em>) &gt; <em>O</em>(<em>H</em>)</span>，说明E支持H，
+LS越大，E对H的支持越充分。当LS<span
+class="math inline"> → ∞</span>时，<span
+class="math inline"><em>O</em>(<em>H</em>|<em>E</em>) → ∞</span>，此时<span
+class="math inline"><em>P</em>(<em>H</em>|<em>E</em>) → 1</span>，表示由于E的存在将导致H为真。
+- 当LS = 1时，<span
+class="math inline"><em>O</em>(<em>H</em>|<em>E</em>) = <em>O</em>(<em>H</em>)</span>，说明E对H没有影响。
+- 当LS &lt; 1时，<span
+class="math inline"><em>O</em>(<em>H</em>|<em>E</em>) &lt; <em>O</em>(<em>H</em>)</span>，说明E不支持H。当LS
+= 0时，<span
+class="math inline"><em>O</em>(<em>H</em>|<em>E</em>) = 0</span>，说明E的存在使得H为假。</p>
+<p><strong>LN的性质</strong> - 当LN &gt; 1时，<span
+class="math inline"><em>O</em>(<em>H</em>|﹁<em>E</em>) &gt; <em>O</em>(<em>H</em>)</span>，说明﹁E支持H，即由于E的不出现，增大了H为真的概率。并且，LN越大，﹁E对H为真的支持就越强。当LN<span
+class="math inline"> → ∝</span>时，<span
+class="math inline"><em>O</em>(<em>H</em>|﹁<em>E</em>) → ∝</span>，即<span
+class="math inline"><em>P</em>(<em>H</em>|﹁<em>E</em>) → 1</span>，表示由于﹁E的存在将导致H为真。
+- 当LN = 1时，<span
+class="math inline"><em>O</em>(<em>H</em>|﹁<em>E</em>) = <em>O</em>(<em>H</em>)</span>，说明﹁E对H没有影响。
+- 当LN &lt; 1时，<span
+class="math inline"><em>O</em>(<em>H</em>|﹁<em>E</em>) &lt; <em>O</em>(<em>H</em>)</span>，说明﹁E不支持H，即由于﹁E的存在，使H为真的可能性下降，或者说由于E不存在，将反对H为真。当LN<span
+class="math inline"> → 0</span>时<span
+class="math inline"><em>O</em>(<em>H</em>|﹁<em>E</em>) → 0</span>，即LN越小，E的不出现就越反对H为真，这说明H越需要E的出现。当LN
+= 0时，<span
+class="math inline"><em>O</em>(<em>H</em>|﹁<em>E</em>) = 0</span>，说明﹁E的存在（即E不存在）将导致H为假。</p>
+<p><strong>LS和LN的关系</strong> 由于<span
+class="math inline"><em>E</em></span>和<span
+class="math inline">¬<em>E</em></span>不会同时支持或同时排斥<span
+class="math inline"><em>H</em></span>，因此只有下面三种情况存在： -
+<span
+class="math inline"><em>L</em><em>S</em> &gt; 1 ∧ <em>L</em><em>N</em> &lt; 1</span>
+- <span
+class="math inline"><em>L</em><em>S</em> &lt; 1 ∧ <em>L</em><em>N</em> &gt; 1</span>
+- <span
+class="math inline"><em>L</em><em>S</em> = <em>L</em><em>N</em> = 1</span></p>
+<h3 id="证据不确定性的表示">证据不确定性的表示</h3>
+<p>在主观Bayes方法中，基本证据E的不精确性是用其概率或几率来表示的。概率与几率之间的关系为：
+<span class="math display">$$O(E)=\frac{P(E)}{1-P(E)}=\begin{cases}0
+&amp; \text{当 } E \text{ 为假时} \\ \infty &amp; \text{当 } E \text{
+为真时} \\ (0, \infty) &amp; \text{当 } E \text{
+非真也非假时}\end{cases}$$</span>
+在实际应用中，除了需要考虑证据E的先验概率与先验几率外，往往还需要考虑在当前观察下证据E的后验概率或后验几率。
+以概率情况为例，对初始证据E，用户可以根据当前观察S将其先验概率P(E)更改为后验概率P(E|S)，即相当于给出证据E的动态强度。
+如：机器运转异常（S）-故障原因（E）-故障(H)</p>
+<h4 id="组合证据不确定性的计算">组合证据不确定性的计算</h4>
+<p><strong>证据的基本组合方式只有合取和析取两种</strong>。
+当组合证据是多个单一证据的合取时，如果在当前观察S下，每一个单一证据<span
+class="math inline"><em>E</em><sub><em>i</em></sub></span>有概率<span
+class="math inline"><em>P</em>(<em>E</em><sub><em>i</em></sub>|<em>S</em>)</span>，
+那么： <span
+class="math display"><em>P</em>(<em>E</em>|<em>S</em>) = min {<em>P</em>(<em>E</em><sub>1</sub>|<em>S</em>), ..., <em>P</em>(<em>E</em><sub><em>n</em></sub>|<em>S</em>)}</span>
+反之，若组合证据是多个单一证据的析取，那么： <span
+class="math display"><em>P</em>(<em>E</em>|<em>S</em>) = max {<em>P</em>(<em>E</em><sub>1</sub>|<em>S</em>), ..., <em>P</em>(<em>E</em><sub><em>n</em></sub>|<em>S</em>)}</span></p>
+<h3 id="不确定性的更新">不确定性的更新</h3>
+<p>推理任务：根据E的概率P(E)及LS和LN的值，把H的先验概率P(H)或先验几率O(H)更新为后验概率或后验几率。
+分以下3种情况讨论： 1. 证据肯定为真 2. 证据肯定为假 3.
+证据既非真又非假</p>
+<p><strong>证据肯定为真</strong> <span
+class="math display"><em>O</em>(<em>H</em>|<em>E</em>) = <em>L</em><em>S</em> × <em>O</em>(<em>H</em>)</span>
+<span class="math display">$$P(H|E)=\frac{LS\cdot P(H)}{(LS-1)\cdot P(H)
++ 1}$$</span> <strong>证据肯定为假</strong> <span
+class="math display"><em>O</em>(<em>H</em>|¬<em>E</em>) = <em>L</em><em>N</em> × <em>O</em>(<em>H</em>)</span>
+<span class="math display">$$P(H|\neg{E})=\frac{LN\cdot
+P(H)}{(LN-1)\cdot P(H) + 1}$$</span> <strong>证据既非真又非假</strong>
+<span
+class="math display"><em>P</em>(<em>H</em>|<em>S</em>) = <em>P</em>(<em>H</em>|<em>E</em>) × <em>P</em>(<em>E</em>|<em>S</em>) + <em>P</em>(<em>H</em>|¬<em>E</em>) × <em>P</em>(¬<em>E</em>|<em>S</em>)</span>
+分情况讨论： 1. 当P(E|S) = 1时，实际上就是证据肯定为真的情况； 2.
+当P(E|S) = 0时，实际上就是证据肯定为假的情况； 3. 当P(E|S) =
+P(S)时，说明观察S对证据E没有影响，则P(H|S) = P(H) 4.
+当P(E|S)为其他值时，构造插值公式： <img src="主观Bayes方法/插值.png"
+alt="插值" /></p>
+<h3 id="主观bayes方法的推理模型">主观Bayes方法的推理模型</h3>
+<p><strong>结论不确定性的合成</strong>
+假设有n条知识都支持同一结论H，并且这些知识的前提条件分别是n个相互独立的证据E1、E2、…、En，而每个证据所对应的观察又分别是S1、S2、…、Sn。在这些观察下，求H的后验概率的方法是：首先对每条知识分别求出H的后验几率<span
+class="math inline"><em>O</em>(<em>H</em>|<em>S</em><sub><em>i</em></sub>)</span>，然后利用这些后验几率并按下述公式求出在所有观察下H的后验几率：
+<span class="math display">$$O(H|S_1,S_2,...,S_n) =
+\frac{O(H|S_1)}{O(H)}\times \frac{O(H|S_2)}{O(H)}\times ...\times
+\frac{O(H|S_n)}{O(H)}\times O(H)$$</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/21/%E5%9F%BA%E4%BA%8E%E9%80%BB%E8%BE%91%E7%9A%84%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,7 +400,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-11-21 16:43:26 / 修改时间：19:51:24" itemprop="dateCreated datePublished" datetime="2025-11-21T16:43:26+08:00">2025-11-21</time>
+              <time title="创建时间：2025-11-21 16:43:26 / 修改时间：22:13:04" itemprop="dateCreated datePublished" datetime="2025-11-21T16:43:26+08:00">2025-11-21</time>
             </span>
 
           <br>
@@ -730,6 +906,7 @@ id="两种基本的归约策略分解与变换">两种基本的归约策略：�
 <li><strong>核心实现</strong>：其核心在于不断应用算符来简化问题描述，直至问题变为本原问题。</li>
 </ul>
 <p>通过问题归约法和与或图，我们将复杂的“分而治之”思维过程变得可视化、形式化，为计算机实现自动化的问题分解与求解提供了坚实的理论基础。</p>
+<h2 id="演绎推理方法">演绎推理方法</h2>
 
       
     </div>
@@ -778,6 +955,13 @@ id="两种基本的归约策略分解与变换">两种基本的归约策略：�
 
               <time title="创建时间：2025-10-31 18:19:38" itemprop="dateCreated datePublished" datetime="2025-10-31T18:19:38+08:00">2025-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-11-23 18:42:53" itemprop="dateModified" datetime="2025-11-23T18:42:53+08:00">2025-11-23</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -912,7 +1096,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -963,12 +1147,12 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">10k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">9 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
