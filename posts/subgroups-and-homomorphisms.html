@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="抽象代数笔记：子群、群同态、核与像、同构和直积。">
+    <title>子群、群同态与同构：从结构内部到结构之间 | Young Zhang</title>
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <script src="../assets/js/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../posts.html">文章</a>
+        <a href="../about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">抽象代数 · 2026.06.16</p>
+      <h1>子群、群同态与同构：从结构内部到结构之间</h1>
+      <p class="lead">群论的第一步，是学会识别一个结构内部的“小群”；第二步，是理解两个群之间怎样保持结构地互相映射。子群和群同态正好对应这两件事。</p>
+
+      <h2>两个常见的矩阵群</h2>
+      <p>在进入一般定义之前，先看两个典型例子。所有行列式非零的 \(n\) 阶实矩阵在矩阵乘法下构成一个群，记作一般线性群：</p>
+      <p>\[
+        \mathrm{GL}_n(\mathbb{R})=\{A\in M_n(\mathbb{R}):\det A\ne 0\}.
+      \]</p>
+      <p>这里“行列式非零”保证了每个矩阵都有逆矩阵。进一步地，所有行列式等于 \(1\) 的矩阵也构成一个群，称为特殊线性群：</p>
+      <p>\[
+        \mathrm{SL}_n(\mathbb{R})=\{A\in M_n(\mathbb{R}):\det A=1\}.
+      \]</p>
+      <p>它是 \(\mathrm{GL}_n(\mathbb{R})\) 的子群，因为两个行列式为 \(1\) 的矩阵相乘后行列式仍为 \(1\)，逆矩阵的行列式也仍为 \(1\)。</p>
+
+      <h2>什么是子群</h2>
+      <p>设 \((G,\times)\) 是一个群。若 \(H\subset G\)，并且 \(H\) 在同一个运算 \(\times\) 下自身也是一个群，则称 \((H,\times)\) 是 \((G,\times)\) 的子群，记作 \(H&lt;G\)。</p>
+      <p>例如，在加法运算下有一串自然的包含关系：</p>
+      <p>\[
+        (\mathbb{Z},+) &lt; (\mathbb{Q},+) &lt; (\mathbb{R},+) &lt; (\mathbb{C},+).
+      \]</p>
+      <p>子群的重点不只是“集合包含”，还必须保留群结构。比如所有二阶实矩阵 \(M_2(\mathbb{R})\) 在矩阵乘法下是含单位元的幺半群，其单位元是</p>
+      <p>\[
+      I=\begin{bmatrix}1&0\\0&1\end{bmatrix}.
+      \]</p>
+      <p>而形如 \(\begin{bmatrix}a&0\\0&0\end{bmatrix}\) 的矩阵集合虽然是 \(M_2(\mathbb{R})\) 的子集，但它在自身乘法结构中的单位元是 \(\begin{bmatrix}1&0\\0&0\end{bmatrix}\)，不是 \(I\)。这说明代数结构的“子结构”不只是子集关系，还要匹配运算和单位元。</p>
+
+      <h2>子群判别法</h2>
+      <p>实际证明一个集合是子群时，不必逐条验证群公理。常用判别法是：若 \(H\subset G\)，则 \(H&lt;G\) 当且仅当 \(H\) 非空，并且对任意 \(x,y\in H\)，都有</p>
+      <p>\[
+        x\times y^{-1}\in H.
+      \]</p>
+      <p>证明思路很短。因为 \(H\) 非空，取 \(a\in H\)，由条件得 \(a\times a^{-1}=e\in H\)。再令 \(x=e\)，可得 \(e\times y^{-1}=y^{-1}\in H\)，所以 \(H\) 对逆元封闭。最后，由于 \(y^{-1}\in H\)，再用条件得到 \(x\times (y^{-1})^{-1}=x\times y\in H\)，所以 \(H\) 对运算封闭。于是 \(H\) 是一个子群。</p>
+
+      <h2>群同态：保持乘法的映射</h2>
+      <p>设 \((G,\times)\) 与 \((G',\star)\) 是两个群。若映射 \(f:G\to G'\) 满足</p>
+      <p>\[
+        f(x\times y)=f(x)\star f(y),\quad \forall x,y\in G,
+      \]</p>
+      <p>则称 \(f\) 是一个群同态。它的意思是：先在 \(G\) 里运算再映射，和先映射到 \(G'\) 再运算，结果一致。</p>
+      <p>行列式就是一个典型例子。由于 \(\det(AB)=\det A\cdot \det B\)，所以</p>
+      <p>\[
+        \det:\mathrm{GL}_n(\mathbb{R})\to \mathbb{R}^{\times}
+      \]</p>
+      <p>是从矩阵乘法群到非零实数乘法群的群同态。</p>
+
+      <h2>同态的两个基本性质</h2>
+      <p>群同态会自动保持单位元和逆元。若 \(e\) 是 \(G\) 的单位元，\(e'\) 是 \(G'\) 的单位元，则</p>
+      <p>\[
+        f(e)=e',\qquad f(x^{-1})=f(x)^{-1}.
+      \]</p>
+      <p>第一式来自 \(f(e)=f(e\times e)=f(e)\star f(e)\)，两边同时乘以 \(f(e)^{-1}\) 得 \(f(e)=e'\)。第二式来自</p>
+      <p>\[
+        f(x)\star f(x^{-1})=f(x\times x^{-1})=f(e)=e',
+      \]</p>
+      <p>因此 \(f(x^{-1})\) 正是 \(f(x)\) 的逆元。</p>
+
+      <h2>核与像</h2>
+      <p>同态最重要的两个附属对象是核与像。定义</p>
+      <p>\[
+        \ker(f)=\{x\in G:f(x)=e'\},
+      \]</p>
+      <p>\[
+        \operatorname{im}(f)=\{y\in G':\exists x\in G,\ f(x)=y\}.
+      \]</p>
+      <p>核描述了 \(G\) 中哪些元素被 \(f\) 压到了目标群的单位元；像描述了 \(f\) 在目标群中真正到达了哪些元素。</p>
+      <p>核是 \(G\) 的子群。因为 \(f(e)=e'\)，所以 \(e\in\ker(f)\)。若 \(x,y\in\ker(f)\)，则</p>
+      <p>\[
+        f(x\times y^{-1})=f(x)\star f(y)^{-1}=e'\star(e')^{-1}=e',
+      \]</p>
+      <p>所以 \(x\times y^{-1}\in\ker(f)\)。由子群判别法可知 \(\ker(f)&lt;G\)。</p>
+      <p>同样，像也是 \(G'\) 的子群。因为 \(e'=f(e)\)，所以 \(e'\in\operatorname{im}(f)\)。若 \(x,y\in\operatorname{im}(f)\)，则存在 \(z_1,z_2\in G\)，使 \(f(z_1)=x\)、\(f(z_2)=y\)。于是</p>
+      <p>\[
+        x\star y^{-1}=f(z_1)\star f(z_2)^{-1}=f(z_1\times z_2^{-1}),
+      \]</p>
+      <p>仍在 \(\operatorname{im}(f)\) 中。</p>
+
+      <h2>单同态、满同态与同构</h2>
+      <p>若群同态 \(f\) 是单射，则称它为单同态；若它是满射，则称它为满同态。若 \(f\) 同时是双射，则称它为群同构。两个群同构，意味着它们虽然元素名字可能不同，但群结构完全一样。</p>
+      <p>一个非常有用的判别是：</p>
+      <p>\[
+        f \text{ 是单同态}\quad \Longleftrightarrow \quad \ker(f)=\{e\}.
+      \]</p>
+      <p>若 \(f\) 是单射，那么只有 \(e\) 能映到 \(e'=f(e)\)，所以核只有 \(\{e\}\)。反过来，若 \(\ker(f)=\{e\}\)，且 \(f(x)=f(y)\)，则</p>
+      <p>\[
+        f(y\times x^{-1})=f(y)\star f(x)^{-1}=e',
+      \]</p>
+      <p>所以 \(y\times x^{-1}\in\ker(f)\)，从而 \(y\times x^{-1}=e\)，得到 \(x=y\)。因此 \(f\) 是单射。</p>
+      <p>此外，若 \(f:G\to G'\) 是群同构，则 \(f^{-1}:G'\to G\) 也是群同构。因为 \(f^{-1}\) 显然仍是双射；对任意 \(x,y\in G'\)，有</p>
+      <p>\[
+        f\left(f^{-1}(x)\times f^{-1}(y)\right)=x\star y,
+      \]</p>
+      <p>故</p>
+      <p>\[
+        f^{-1}(x\star y)=f^{-1}(x)\times f^{-1}(y).
+      \]</p>
+
+      <h2>群的直积</h2>
+      <p>若 \((G_1,\cdot_1)\) 和 \((G_2,\cdot_2)\) 是两个群，可以在笛卡尔积 \(G_1\times G_2\) 上逐坐标定义运算：</p>
+      <p>\[
+        (x_1,y_1)\star(x_2,y_2)=(x_1\cdot_1 x_2,\ y_1\cdot_2 y_2).
+      \]</p>
+      <p>这样得到的新结构仍是群，称为 \(G_1\) 与 \(G_2\) 的直积。单位元是 \((e_1,e_2)\)，逆元是 \((x,y)^{-1}=(x^{-1},y^{-1})\)。</p>
+      <p>更一般地，对指标集 \(I\) 上的一族群 \(\{G_i\}_{i\in I}\)，可以构造直积 \(\prod_{i\in I}G_i\)。对每个 \(j\in I\)，投影映射</p>
+      <p>\[
+        p_j:\prod_{i\in I}G_i\to G_j
+      \]</p>
+      <p>把一个元组送到第 \(j\) 个坐标。由于直积的运算逐坐标进行，\(p_j\) 自然是群同态。</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+  </body>
+</html>
