@@ -540,13 +540,13 @@ h3 {
 }
 
 .graph-shell {
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  border: 1px solid rgba(132, 111, 255, 0.28);
+  border-radius: 12px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(232, 242, 255, 0.58)),
-    repeating-linear-gradient(90deg, transparent 0 42px, rgba(0, 167, 255, 0.055) 42px 43px),
-    repeating-linear-gradient(0deg, transparent 0 42px, rgba(108, 124, 255, 0.045) 42px 43px);
-  box-shadow: var(--shadow);
+    radial-gradient(circle at 22% 18%, rgba(167, 139, 250, 0.22), transparent 22rem),
+    radial-gradient(circle at 78% 12%, rgba(121, 192, 255, 0.18), transparent 24rem),
+    linear-gradient(145deg, #151821 0%, #1b1d2b 52%, #171a24 100%);
+  box-shadow: 0 28px 80px rgba(23, 36, 63, 0.28);
   overflow: hidden;
 }
 
@@ -556,8 +556,9 @@ h3 {
   justify-content: space-between;
   gap: 16px;
   padding: 18px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.54);
+  border-bottom: 1px solid rgba(132, 111, 255, 0.22);
+  background: rgba(20, 23, 34, 0.76);
+  backdrop-filter: blur(16px);
 }
 
 .graph-search {
@@ -567,7 +568,7 @@ h3 {
 }
 
 .graph-search label {
-  color: var(--muted);
+  color: #b7c0d8;
   font-size: 0.82rem;
   font-weight: 900;
 }
@@ -576,11 +577,15 @@ h3 {
   width: 100%;
   min-height: 42px;
   padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--text);
+  border: 1px solid rgba(132, 111, 255, 0.28);
+  border-radius: 7px;
+  background: rgba(11, 14, 22, 0.78);
+  color: #eef2ff;
   font: inherit;
+}
+
+.graph-search input::placeholder {
+  color: #7f8aa5;
 }
 
 .graph-actions {
@@ -590,6 +595,9 @@ h3 {
 }
 
 .graph-actions .button {
+  border-color: rgba(132, 111, 255, 0.3);
+  background: rgba(31, 35, 50, 0.88);
+  color: #eef2ff;
   min-height: 42px;
 }
 
@@ -602,16 +610,21 @@ h3 {
 #knowledgeGraph {
   width: 100%;
   height: 620px;
+  background:
+    radial-gradient(circle at center, rgba(167, 139, 250, 0.08), transparent 18rem),
+    radial-gradient(circle at 30% 70%, rgba(121, 192, 255, 0.08), transparent 16rem),
+    repeating-linear-gradient(90deg, transparent 0 44px, rgba(201, 209, 217, 0.035) 44px 45px),
+    repeating-linear-gradient(0deg, transparent 0 44px, rgba(201, 209, 217, 0.035) 44px 45px);
   touch-action: none;
 }
 
 .graph-link {
-  stroke: rgba(0, 111, 197, 0.26);
-  stroke-width: 1.4;
+  stroke: rgba(201, 209, 217, 0.18);
+  stroke-width: 1;
 }
 
 .graph-link-label {
-  fill: rgba(51, 66, 96, 0.55);
+  fill: rgba(183, 192, 216, 0.6);
   font-size: 0.72rem;
   font-weight: 800;
   pointer-events: none;
@@ -628,16 +641,17 @@ h3 {
 }
 
 .node-halo {
-  fill: rgba(255, 255, 255, 0.42);
-  stroke: rgba(0, 167, 255, 0.1);
+  fill: rgba(167, 139, 250, 0.08);
+  stroke: rgba(167, 139, 250, 0.12);
 }
 
 .node-core {
-  stroke-width: 2;
+  stroke-width: 2.2;
 }
 
 .graph-node.selected .node-core {
-  stroke-width: 4;
+  stroke: #ffffff;
+  stroke-width: 3.4;
 }
 
 .graph-node.dimmed {
@@ -646,29 +660,38 @@ h3 {
 
 .node-type,
 .node-label {
-  fill: var(--text);
+  fill: #eef2ff;
   font-weight: 900;
   pointer-events: none;
   text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(11, 14, 22, 0.82);
+  stroke-width: 3px;
 }
 
 .node-type {
-  fill: var(--muted);
-  font-size: 0.64rem;
+  fill: #9aa8c7;
+  font-size: 0.6rem;
 }
 
 .node-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
 
 .graph-detail {
   padding: 24px;
-  border-left: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.66);
+  border-left: 1px solid rgba(132, 111, 255, 0.22);
+  background: rgba(20, 23, 34, 0.82);
+  color: #eef2ff;
 }
 
 .graph-detail h2 {
+  color: #eef2ff;
   font-size: 1.35rem;
+}
+
+.graph-detail p {
+  color: #b7c0d8;
 }
 
 .node-tags {
@@ -680,10 +703,10 @@ h3 {
 
 .node-tags span {
   padding: 4px 8px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(132, 111, 255, 0.24);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--muted);
+  background: rgba(31, 35, 50, 0.82);
+  color: #b7c0d8;
   font-size: 0.8rem;
   font-weight: 800;
 }
@@ -693,7 +716,9 @@ h3 {
   flex-wrap: wrap;
   gap: 14px;
   padding: 14px 18px 18px;
-  color: var(--muted);
+  border-top: 1px solid rgba(132, 111, 255, 0.18);
+  background: rgba(20, 23, 34, 0.66);
+  color: #b7c0d8;
   font-size: 0.88rem;
   font-weight: 800;
 }
@@ -712,23 +737,23 @@ h3 {
 }
 
 .legend-dot.concept {
-  background: #006fc5;
+  background: #a78bfa;
 }
 
 .legend-dot.markdown {
-  background: #19a58f;
+  background: #7ee787;
 }
 
 .legend-dot.web {
-  background: #6c7cff;
+  background: #79c0ff;
 }
 
 .legend-dot.pdf {
-  background: #d94d63;
+  background: #ff7b72;
 }
 
 .legend-dot.file {
-  background: #f59e42;
+  background: #f2cc60;
 }
 
 @media (max-width: 860px) {

@@ -8,11 +8,11 @@ const centerButton = document.querySelector('[data-graph-action="center"]');
 const floatButton = document.querySelector('[data-graph-action="float"]');
 
 const typeConfig = {
-  concept: { label: "知识", color: "#006fc5", fill: "#eef7ff", radius: 34 },
-  markdown: { label: "Markdown", color: "#19a58f", fill: "#effffb", radius: 28 },
-  pdf: { label: "PDF", color: "#d94d63", fill: "#fff0f3", radius: 28 },
-  web: { label: "网页", color: "#6c7cff", fill: "#f3f2ff", radius: 28 },
-  file: { label: "文件", color: "#f59e42", fill: "#fff7ec", radius: 28 }
+  concept: { label: "知识", color: "#a78bfa", fill: "#2c2450", radius: 18 },
+  markdown: { label: "Markdown", color: "#7ee787", fill: "#173825", radius: 13 },
+  pdf: { label: "PDF", color: "#ff7b72", fill: "#47202a", radius: 13 },
+  web: { label: "网页", color: "#79c0ff", fill: "#16324a", radius: 13 },
+  file: { label: "文件", color: "#f2cc60", fill: "#42351a", radius: 13 }
 };
 
 let graph = { nodes: [], links: [] };
@@ -67,7 +67,8 @@ function render() {
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
   defs.innerHTML = `
     <filter id="nodeGlow" x="-80%" y="-80%" width="260%" height="260%">
-      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#4470b0" flood-opacity="0.18"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#a78bfa" flood-opacity="0.36"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.2"/>
     </filter>
   `;
   svg.appendChild(defs);
@@ -93,16 +94,16 @@ function render() {
       role: node.kind === "resource" ? "link" : "button",
       "aria-label": node.label
     });
-    const halo = createSvg("circle", { class: "node-halo", r: node.radius + 10 });
+    const halo = createSvg("circle", { class: "node-halo", r: node.radius + 12 });
     const circle = createSvg("circle", {
       class: "node-core",
       r: node.radius,
       fill: config.fill,
       stroke: config.color
     });
-    const type = createSvg("text", { class: "node-type", y: -4 });
+    const type = createSvg("text", { class: "node-type", y: node.kind === "concept" ? -26 : -21 });
     type.textContent = config.label;
-    const label = createSvg("text", { class: "node-label", y: 14 });
+    const label = createSvg("text", { class: "node-label", y: node.kind === "concept" ? 35 : 29 });
     label.textContent = trimLabel(node.label);
     group.append(halo, circle, type, label);
     group.addEventListener("pointerdown", (event) => startDrag(event, node));
