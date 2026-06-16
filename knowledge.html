@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Young Zhang 的交互式可视化知识图谱。">
+    <title>知识图谱 | Young Zhang</title>
+    <link rel="stylesheet" href="assets/css/site.css?v=insights-20260617">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="posts.html">文章</a>
+        <a href="knowledge.html" aria-current="page">图谱</a>
+        <a href="about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="page graph-page">
+      <section class="page-header graph-header">
+        <p class="eyebrow">Knowledge Graph</p>
+        <h1>可视化知识图谱</h1>
+        <p class="lead">拖动节点来整理结构；点击资源节点会打开对应 Markdown、网页、PDF 或其他文件。新增资源后，只要写入图谱数据，它会自动按文件类型生成节点样式。</p>
+      </section>
+
+      <section class="graph-shell" aria-label="交互式知识图谱">
+        <div class="graph-toolbar">
+          <div class="graph-search">
+            <label for="graphSearch">搜索</label>
+            <input id="graphSearch" type="search" placeholder="输入节点、标签或资源类型">
+          </div>
+          <div class="graph-actions">
+            <button class="button" type="button" data-graph-action="center">居中</button>
+            <button class="button" type="button" data-graph-action="float">浮动</button>
+          </div>
+        </div>
+        <div class="graph-stage">
+          <svg id="knowledgeGraph" role="img" aria-label="知识节点与资源节点关系图"></svg>
+          <aside class="graph-detail" aria-live="polite">
+            <p class="eyebrow">Selected</p>
+            <h2>选择一个节点</h2>
+            <p>知识节点展示主题关系，资源节点可以跳转到文件或外部网页。</p>
+          </aside>
+        </div>
+        <div class="graph-legend" aria-label="图例">
+          <span><i class="legend-dot concept"></i>知识节点</span>
+          <span><i class="legend-dot markdown"></i>Markdown</span>
+          <span><i class="legend-dot web"></i>网页</span>
+          <span><i class="legend-dot pdf"></i>PDF</span>
+          <span><i class="legend-dot file"></i>文件</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+    <script src="assets/js/knowledge-graph.js?v=knowledge-20260617" defer></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "youngzhang-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:data": "node scripts/generate-site-data.mjs"
+  }
+}

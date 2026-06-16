@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "abstract-algebra",
+      "label": "抽象代数",
+      "kind": "concept",
+      "description": "围绕群、子群、同态、循环群等概念整理的数学知识网络。",
+      "tags": ["math", "algebra"]
+    },
+    {
+      "id": "group-theory",
+      "label": "群论",
+      "kind": "concept",
+      "description": "研究带有封闭运算、单位元、逆元和结合律的代数结构。",
+      "tags": ["math", "group"]
+    },
+    {
+      "id": "homomorphism",
+      "label": "群同态",
+      "kind": "concept",
+      "description": "保持群运算的映射，是连接两个群结构的基本工具。",
+      "tags": ["math", "map"]
+    },
+    {
+      "id": "cyclic-group",
+      "label": "循环群",
+      "kind": "concept",
+      "description": "由一个元素生成整个群的特殊群。",
+      "tags": ["math", "group"]
+    },
+    {
+      "id": "res-subgroups",
+      "label": "子群、群同态与同构",
+      "kind": "resource",
+      "url": "posts/subgroups-and-homomorphisms.html",
+      "description": "博客文章：子群判别、核与像、单同态和同构。",
+      "tags": ["html", "article"]
+    },
+    {
+      "id": "res-cyclic",
+      "label": "有限群、元素的阶与循环群",
+      "kind": "resource",
+      "url": "posts/finite-and-cyclic-groups.html",
+      "description": "博客文章：有限群、元素阶、生成子群和循环群。",
+      "tags": ["html", "article"]
+    },
+    {
+      "id": "res-category",
+      "label": "抽象代数分类页",
+      "kind": "resource",
+      "url": "categories/abstract-algebra.html",
+      "description": "抽象代数分类下的文章列表。",
+      "tags": ["html", "category"]
+    },
+    {
+      "id": "res-example-md",
+      "label": "Markdown 资源示例",
+      "kind": "resource",
+      "url": "resources/example-note.md",
+      "description": "示例：以后传入 Markdown 文件时，会生成这种资源节点。",
+      "tags": ["markdown", "demo"]
+    },
+    {
+      "id": "res-example-pdf",
+      "label": "PDF 资源示例",
+      "kind": "resource",
+      "url": "resources/example-paper.pdf",
+      "description": "示例：PDF 文件会以文档资源节点展示，点击后打开文件。",
+      "tags": ["pdf", "demo"]
+    },
+    {
+      "id": "res-wikipedia-group",
+      "label": "Group 页面",
+      "kind": "resource",
+      "url": "https://en.wikipedia.org/wiki/Group_(mathematics)",
+      "description": "外部网页资源示例。",
+      "tags": ["web", "reference"]
+    }
+  ],
+  "links": [
+    { "source": "abstract-algebra", "target": "group-theory", "label": "contains" },
+    { "source": "group-theory", "target": "homomorphism", "label": "maps" },
+    { "source": "group-theory", "target": "cyclic-group", "label": "special case" },
+    { "source": "abstract-algebra", "target": "res-category", "label": "index" },
+    { "source": "homomorphism", "target": "res-subgroups", "label": "article" },
+    { "source": "cyclic-group", "target": "res-cyclic", "label": "article" },
+    { "source": "abstract-algebra", "target": "res-example-md", "label": "note" },
+    { "source": "abstract-algebra", "target": "res-example-pdf", "label": "paper" },
+    { "source": "group-theory", "target": "res-wikipedia-group", "label": "reference" }
+  ]
+}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Young Zhang 的个人网站，记录技术、阅读和生活观察。">
     <title>Young Zhang</title>
-    <link rel="stylesheet" href="assets/css/site.css?v=future-20260616">
+    <link rel="stylesheet" href="assets/css/site.css?v=insights-20260617">
   </head>
   <body>
     <header class="site-header">
@@ -13,6 +13,7 @@
       <nav class="nav" aria-label="主导航">
         <a href="index.html" aria-current="page">首页</a>
         <a href="posts.html">文章</a>
+        <a href="knowledge.html">图谱</a>
         <a href="about.html">关于</a>
       </nav>
     </header>
@@ -25,6 +26,7 @@
           <p class="lead">这里是一个重新开始的个人网站骨架。你可以把它扩展成博客、作品集、知识库，或者一个更安静的长期主页。</p>
           <div class="actions">
             <a class="button primary" href="posts.html">查看文章</a>
+            <a class="button" href="knowledge.html">打开图谱</a>
             <a class="button" href="about.html">了解我</a>
           </div>
         </div>
@@ -45,9 +47,29 @@
             <p>整理书籍、论文、文章带来的想法和问题。</p>
           </article>
           <article class="card">
-            <h3>生活观察</h3>
-            <p>保留一些不那么急着被归类的片段。</p>
+            <h3>知识图谱</h3>
+            <p>把主题、文章、网页和文件连接成可拖动的动态网络。</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Activity</p>
+          <h2>提交记录</h2>
+          <p class="lead" data-activity-summary>正在读取提交记录。</p>
+        </div>
+        <div class="activity-panel">
+          <div class="activity-grid" data-activity-grid aria-label="每日提交记录"></div>
+          <div class="activity-legend">
+            <span>少</span>
+            <i class="activity-cell level-0"></i>
+            <i class="activity-cell level-1"></i>
+            <i class="activity-cell level-2"></i>
+            <i class="activity-cell level-3"></i>
+            <i class="activity-cell level-4"></i>
+            <span>多</span>
+          </div>
         </div>
       </section>
     </main>
@@ -56,5 +78,6 @@
       <span>&copy; 2026 Young Zhang</span>
       <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
     </footer>
+    <script src="assets/js/site-insights.js?v=insights-20260617" defer></script>
   </body>
 </html>

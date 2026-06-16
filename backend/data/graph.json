@@ -1,0 +1,55 @@
+{
+  "nodes": [
+    {
+      "id": "abstract-algebra",
+      "label": "抽象代数",
+      "kind": "concept",
+      "description": "围绕群、子群、同态、循环群等概念整理的数学知识网络。",
+      "tags": ["math", "algebra"]
+    },
+    {
+      "id": "group-theory",
+      "label": "群论",
+      "kind": "concept",
+      "description": "研究带有封闭运算、单位元、逆元和结合律的代数结构。",
+      "tags": ["math", "group"]
+    },
+    {
+      "id": "homomorphism",
+      "label": "群同态",
+      "kind": "concept",
+      "description": "保持群运算的映射，是连接两个群结构的基本工具。",
+      "tags": ["math", "map"]
+    },
+    {
+      "id": "cyclic-group",
+      "label": "循环群",
+      "kind": "concept",
+      "description": "由一个元素生成整个群的特殊群。",
+      "tags": ["math", "group"]
+    },
+    {
+      "id": "res-subgroups",
+      "label": "子群、群同态与同构",
+      "kind": "resource",
+      "url": "posts/subgroups-and-homomorphisms.html",
+      "description": "博客文章：子群判别、核与像、单同态和同构。",
+      "tags": ["html", "article"]
+    },
+    {
+      "id": "res-cyclic",
+      "label": "有限群、元素的阶与循环群",
+      "kind": "resource",
+      "url": "posts/finite-and-cyclic-groups.html",
+      "description": "博客文章：有限群、元素阶、生成子群和循环群。",
+      "tags": ["html", "article"]
+    }
+  ],
+  "links": [
+    { "source": "abstract-algebra", "target": "group-theory", "label": "contains" },
+    { "source": "group-theory", "target": "homomorphism", "label": "maps" },
+    { "source": "group-theory", "target": "cyclic-group", "label": "special case" },
+    { "source": "homomorphism", "target": "res-subgroups", "label": "article" },
+    { "source": "cyclic-group", "target": "res-cyclic", "label": "article" }
+  ]
+}
