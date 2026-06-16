@@ -8,11 +8,11 @@ const centerButton = document.querySelector('[data-graph-action="center"]');
 const floatButton = document.querySelector('[data-graph-action="float"]');
 
 const typeConfig = {
-  concept: { label: "知识", color: "#a78bfa", fill: "#2c2450", radius: 18 },
-  markdown: { label: "Markdown", color: "#7ee787", fill: "#173825", radius: 13 },
-  pdf: { label: "PDF", color: "#ff7b72", fill: "#47202a", radius: 13 },
-  web: { label: "网页", color: "#79c0ff", fill: "#16324a", radius: 13 },
-  file: { label: "文件", color: "#f2cc60", fill: "#42351a", radius: 13 }
+  concept: { label: "知识", color: "#a78bfa", fill: "#2c2450", radius: 9 },
+  markdown: { label: "Markdown", color: "#7ee787", fill: "#173825", radius: 6 },
+  pdf: { label: "PDF", color: "#ff7b72", fill: "#47202a", radius: 6 },
+  web: { label: "网页", color: "#79c0ff", fill: "#16324a", radius: 6 },
+  file: { label: "文件", color: "#f2cc60", fill: "#42351a", radius: 6 }
 };
 
 let graph = { nodes: [], links: [] };
@@ -34,7 +34,7 @@ function normalizeGraph(data) {
   const nodes = data.nodes.map((node, index) => {
     const type = resourceType(node);
     const angle = (index / Math.max(data.nodes.length, 1)) * Math.PI * 2;
-    const orbit = 150 + (index % 3) * 38;
+    const orbit = 230 + (index % 4) * 62;
     return {
       ...node,
       type,
@@ -94,16 +94,16 @@ function render() {
       role: node.kind === "resource" ? "link" : "button",
       "aria-label": node.label
     });
-    const halo = createSvg("circle", { class: "node-halo", r: node.radius + 12 });
+    const halo = createSvg("circle", { class: "node-halo", r: node.radius + 10 });
     const circle = createSvg("circle", {
       class: "node-core",
       r: node.radius,
       fill: config.fill,
       stroke: config.color
     });
-    const type = createSvg("text", { class: "node-type", y: node.kind === "concept" ? -26 : -21 });
+    const type = createSvg("text", { class: "node-type", y: node.kind === "concept" ? -22 : -18 });
     type.textContent = config.label;
-    const label = createSvg("text", { class: "node-label", y: node.kind === "concept" ? 35 : 29 });
+    const label = createSvg("text", { class: "node-label", y: node.kind === "concept" ? 29 : 24 });
     label.textContent = trimLabel(node.label);
     group.append(halo, circle, type, label);
     group.addEventListener("pointerdown", (event) => startDrag(event, node));
@@ -133,7 +133,7 @@ function tick() {
 
   graph.nodes.forEach((node) => {
     if (!node.dragging) {
-      const strength = node.kind === "concept" ? 0.006 : 0.0038;
+      const strength = node.kind === "concept" ? 0.0028 : 0.0018;
       node.vx += (centerX - node.x) * strength;
       node.vy += (centerY - node.y) * strength;
       if (floating) {
@@ -149,8 +149,8 @@ function tick() {
     const dx = target.x - source.x;
     const dy = target.y - source.y;
     const distance = Math.hypot(dx, dy) || 1;
-    const desired = source.kind === "concept" && target.kind === "concept" ? 165 : 128;
-    const force = (distance - desired) * 0.004;
+    const desired = source.kind === "concept" && target.kind === "concept" ? 260 : 220;
+    const force = (distance - desired) * 0.003;
     const fx = (dx / distance) * force;
     const fy = (dy / distance) * force;
     if (!source.dragging) {
@@ -170,9 +170,9 @@ function tick() {
       const dx = b.x - a.x;
       const dy = b.y - a.y;
       const distance = Math.max(Math.hypot(dx, dy), 1);
-      const min = a.radius + b.radius + 28;
+      const min = a.radius + b.radius + 72;
       if (distance < min) {
-        const push = (min - distance) * 0.012;
+        const push = (min - distance) * 0.018;
         const fx = (dx / distance) * push;
         const fy = (dy / distance) * push;
         if (!a.dragging) {
@@ -274,7 +274,7 @@ function svgPoint(event) {
 function centerGraph() {
   graph.nodes.forEach((node, index) => {
     const angle = (index / Math.max(graph.nodes.length, 1)) * Math.PI * 2;
-    const orbit = node.kind === "concept" ? 145 : 230;
+    const orbit = node.kind === "concept" ? 190 : 310;
     node.x = dimensions.width / 2 + Math.cos(angle) * orbit;
     node.y = dimensions.height / 2 + Math.sin(angle) * orbit;
     node.vx = 0;
