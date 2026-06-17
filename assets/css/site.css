@@ -92,6 +92,13 @@ a {
   border-bottom: 1px solid var(--line);
   background: rgba(248, 251, 255, 0.74);
   backdrop-filter: blur(18px);
+  transition: box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.site-header.is-scrolled {
+  border-color: rgba(0, 167, 255, 0.24);
+  background: rgba(248, 251, 255, 0.88);
+  box-shadow: 0 14px 34px rgba(55, 91, 145, 0.12);
 }
 
 .brand {
@@ -273,10 +280,12 @@ h3 {
   font-weight: 900;
   text-decoration: none;
   box-shadow: 0 12px 28px rgba(55, 91, 145, 0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
 .button:hover {
   transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(0, 167, 255, 0.18);
 }
 
 .button.primary {
@@ -316,6 +325,13 @@ h3 {
     linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(232, 242, 255, 0.68)),
     linear-gradient(135deg, rgba(0, 167, 255, 0.1), rgba(108, 124, 255, 0.1));
   box-shadow: var(--shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.card:hover {
+  border-color: rgba(0, 167, 255, 0.3);
+  box-shadow: 0 28px 70px rgba(55, 91, 145, 0.22);
+  transform: translateY(-4px);
 }
 
 .card:nth-child(2) {
@@ -359,6 +375,7 @@ h3 {
   gap: 24px;
   padding: 30px;
   border-bottom: 1px solid var(--line);
+  transition: background 180ms ease, transform 180ms ease;
 }
 
 .post-item:last-child {
@@ -367,6 +384,7 @@ h3 {
 
 .post-item:hover {
   background: rgba(232, 242, 255, 0.5);
+  transform: translateX(4px);
 }
 
 .post-item:hover h2 a {
@@ -502,6 +520,12 @@ h3 {
   border: 1px solid rgba(68, 112, 176, 0.12);
   border-radius: 3px;
   background: #d8e1ef;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.activity-cell:hover {
+  box-shadow: 0 0 0 3px rgba(0, 167, 255, 0.14);
+  transform: scale(1.24);
 }
 
 .activity-cell.level-1 {
@@ -634,6 +658,7 @@ h3 {
   cursor: grab;
   filter: url("#nodeGlow");
   outline: none;
+  transition: opacity 160ms ease;
 }
 
 .graph-node:active {
@@ -754,6 +779,59 @@ h3 {
 
 .legend-dot.file {
   background: #f2cc60;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.click-ripple {
+  position: fixed;
+  z-index: 9999;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(0, 167, 255, 0.62);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: click-ripple 620ms ease-out forwards;
+}
+
+@keyframes click-ripple {
+  from {
+    opacity: 0.9;
+    box-shadow: 0 0 0 0 rgba(0, 167, 255, 0.28), 0 0 18px rgba(25, 213, 189, 0.3);
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+
+  to {
+    opacity: 0;
+    box-shadow: 0 0 0 22px rgba(0, 167, 255, 0), 0 0 34px rgba(25, 213, 189, 0);
+    transform: translate(-50%, -50%) scale(2.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 860px) {
