@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="抽象代数笔记：陪集、指数、拉格朗日定理与有限子群乘积公式。">
+    <title>陪集和拉格朗日定理 | Young Zhang</title>
+    <link rel="stylesheet" href="../assets/css/site.css?v=insights-20260617">
+    <script src="../assets/js/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../posts.html">文章</a>
+        <a href="../knowledge.html">图谱</a>
+        <a href="../about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">抽象代数 · 2026.06.17</p>
+      <h1>陪集和拉格朗日定理</h1>
+      <p class="lead">陪集的作用，是把一个群按照某个子群切成许多等大的块。拉格朗日定理正是这个“等大分块”思想的直接结果。</p>
+      <div class="article-stats" data-current-post-stats></div>
+
+      <h2>子群的阶</h2>
+      <p>设 \(H\) 是群 \(G\) 的子群。\(H\) 的阶记作 \(|H|\)，定义为集合 \(H\) 的大小。如果 \(H\) 是无限集，则记 \(|H|=\infty\)。</p>
+      <p>我们最终要证明：若 \(G\) 是有限群，且 \(H&lt;G\)，那么</p>
+      <p>\[
+        |H|\mid |G|.
+      \]</p>
+      <p>这个结论称为拉格朗日定理。为了证明它，需要先理解陪集。</p>
+
+      <h2>左陪集</h2>
+      <p>设 \(G\) 是一个群，\(H&lt;G\)，且 \(a\in G\)。定义</p>
+      <p>\[
+        aH=\{ah:h\in H\}.
+      \]</p>
+      <p>这个集合称为 \(H\) 关于元素 \(a\) 的左陪集。直观上，\(aH\) 是把 \(H\) 中每个元素都左乘 \(a\) 后得到的新集合。</p>
+      <p>需要注意：\(aH\) 一般不是子群。比如它未必包含单位元。只有当 \(a\in H\) 时，\(aH=H\)，此时它才是原来的子群。</p>
+
+      <h2>左乘给出双射</h2>
+      <p>引理：设 \(G\) 是群，\(H&lt;G\)，\(a\in G\)。定义映射</p>
+      <p>\[
+        f:H\to aH,\qquad f(x)=ax.
+      \]</p>
+      <p>则 \(f\) 是双射。因此 \(|H|=|aH|\)。</p>
+      <p>证明：先证明 \(f\) 是单射。若 \(f(x_1)=f(x_2)\)，则</p>
+      <p>\[
+        ax_1=ax_2.
+      \]</p>
+      <p>两边左乘 \(a^{-1}\)，得到 \(x_1=x_2\)。所以 \(f\) 是单射。</p>
+      <p>再证明 \(f\) 是满射。任取 \(y\in aH\)，按照 \(aH\) 的定义，存在 \(x\in H\)，使得 \(y=ax\)。于是 \(y=f(x)\)。所以 \(f\) 是满射。</p>
+      <p>因此 \(f\) 是双射，\(H\) 与 \(aH\) 有相同的元素个数。</p>
+
+      <h2>左陪集要么相等，要么不相交</h2>
+      <p>命题：设 \(G\) 是群，\(H&lt;G\)，\(a,b\in G\)。则</p>
+      <p>\[
+        aH=bH\quad\text{或者}\quad aH\cap bH=\varnothing.
+      \]</p>
+      <p>换句话说，任意两个左陪集没有“部分重叠”这种情况：只要它们碰到一起，就完全相等。</p>
+      <p>证明：只需证明若 \(aH\cap bH\ne\varnothing\)，则 \(aH=bH\)。</p>
+      <p>假设 \(aH\cap bH\ne\varnothing\)。取一个公共元素 \(z\in aH\cap bH\)。由于 \(z\in aH\)，存在 \(h_1\in H\)，使得 \(z=ah_1\)；由于 \(z\in bH\)，存在 \(h_2\in H\)，使得 \(z=bh_2\)。于是</p>
+      <p>\[
+        ah_1=bh_2.
+      \]</p>
+      <p>任取 \(ah\in aH\)，其中 \(h\in H\)。由 \(ah_1=bh_2\) 可得 \(a=bh_2h_1^{-1}\)。因此</p>
+      <p>\[
+        ah=bh_2h_1^{-1}h.
+      \]</p>
+      <p>因为 \(H\) 是子群，\(h_2,h_1^{-1},h\in H\)，所以 \(h_2h_1^{-1}h\in H\)。从而 \(ah\in bH\)。这说明 \(aH\subset bH\)。</p>
+      <p>同理，交换 \(a\) 与 \(b\) 的角色，可得 \(bH\subset aH\)。于是 \(aH=bH\)。</p>
+      <p>所以，所有左陪集构成了 \(G\) 的一个分拆：每个元素属于某个左陪集，并且不同陪集互不相交。</p>
+
+      <h2>商集与指数</h2>
+      <p>设 \(G\) 是有限群，\(H&lt;G\)。所有左陪集组成的集合记作</p>
+      <p>\[
+        G/H=\{aH:a\in G\}.
+      \]</p>
+      <p>这里的 \(G/H\) 只是左陪集的集合；如果 \(H\) 不是正规子群，还不能自然地把它看成一个群。</p>
+      <p>我们把左陪集的个数称为 \(H\) 在 \(G\) 中的指数，记作</p>
+      <p>\[
+        [G:H]=|G/H|.
+      \]</p>
+
+      <h2>拉格朗日定理</h2>
+      <p>定理：设 \(G\) 是有限群，\(H&lt;G\)。则</p>
+      <p>\[
+        |G|=[G:H]|H|.
+      \]</p>
+      <p>特别地，\(|H|\mid |G|\)。</p>
+      <p>证明：由前面的结论，所有左陪集构成 \(G\) 的一个分拆。也就是说，\(G\) 可以写成若干个两两不交的左陪集的并：</p>
+      <p>\[
+        G=a_1H\sqcup a_2H\sqcup\cdots\sqcup a_rH,
+      \]</p>
+      <p>其中 \(r=[G:H]\)，符号 \(\sqcup\) 表示不交并。</p>
+      <p>又由“左乘给出双射”的引理，每个左陪集都与 \(H\) 等势，因此</p>
+      <p>\[
+        |a_iH|=|H|,\qquad i=1,\ldots,r.
+      \]</p>
+      <p>因为这些陪集两两不交，所以可以直接相加计数：</p>
+      <p>\[
+        |G|=|a_1H|+\cdots+|a_rH|=r|H|=[G:H]|H|.
+      \]</p>
+      <p>因此 \(|G|\) 是 \(|H|\) 的整数倍，得到 \(|H|\mid |G|\)。</p>
+      <p>这个定理的直观含义是：有限群 \(G\) 被子群 \(H\) 的陪集切成了若干个大小完全相同的块，每一块的大小都是 \(|H|\)。</p>
+
+      <h2>陪集相等的判别</h2>
+      <p>引理：设 \(G\) 是群，\(H&lt;G\)，\(x\in G\)。则</p>
+      <p>\[
+        xH=H\iff x\in H.
+      \]</p>
+      <p>证明：若 \(xH=H\)，由于 \(e\in H\)，所以 \(xe=x\in xH=H\)，故 \(x\in H\)。</p>
+      <p>反过来，若 \(x\in H\)，先证 \(xH\subset H\)。任取 \(xh\in xH\)，其中 \(h\in H\)。因为 \(x,h\in H\)，且 \(H\) 对运算封闭，所以 \(xh\in H\)。</p>
+      <p>再证 \(H\subset xH\)。任取 \(h\in H\)。因为 \(x\in H\)，所以 \(x^{-1}\in H\)，从而 \(x^{-1}h\in H\)。于是</p>
+      <p>\[
+        h=x(x^{-1}h)\in xH.
+      \]</p>
+      <p>所以 \(H\subset xH\)。两边合起来得到 \(xH=H\)。</p>
+      <p>更一般地，对 \(x,y\in G\)，有</p>
+      <p>\[
+        xH=yH\iff y^{-1}x\in H.
+      \]</p>
+      <p>证明：注意到左乘 \(y^{-1}\) 会把 \(yH\) 变成 \(H\)，并把 \(xH\) 变成 \(y^{-1}xH\)。因此</p>
+      <p>\[
+        xH=yH
+        \iff y^{-1}xH=H
+        \iff y^{-1}x\in H.
+      \]</p>
+      <p>最后一步正是刚刚证明的特殊情形。</p>
+
+      <h2>指数的乘法公式</h2>
+      <p>命题：若 \(K&lt;H&lt;G\) 是三个有限群，则</p>
+      <p>\[
+        [G:K]=[G:H][H:K].
+      \]</p>
+      <p>证明：由拉格朗日定理，分别对 \(K&lt;G\)、\(H&lt;G\)、\(K&lt;H\) 使用公式，得到</p>
+      <p>\[
+        |G|=[G:K]|K|,
+      \]</p>
+      <p>\[
+        |G|=[G:H]|H|,
+      \]</p>
+      <p>\[
+        |H|=[H:K]|K|.
+      \]</p>
+      <p>把第三个等式代入第二个等式：</p>
+      <p>\[
+        |G|=[G:H][H:K]|K|.
+      \]</p>
+      <p>又因为 \(|G|=[G:K]|K|\)，且 \(|K|>0\)，两边同时除以 \(|K|\)，得到</p>
+      <p>\[
+        [G:K]=[G:H][H:K].
+      \]</p>
+
+      <h2>两个有限子群乘积集合的大小</h2>
+      <p>命题：设 \(G\) 是群，\(H,K&lt;G\) 是两个有限子群。定义</p>
+      <p>\[
+        HK=\{hk:h\in H,\ k\in K\}.
+      \]</p>
+      <p>则</p>
+      <p>\[
+        |HK|=\frac{|H||K|}{|H\cap K|}.
+      \]</p>
+      <p>这里 \(HK\) 一般只是 \(G\) 的一个子集，不一定是子群；公式只是在计算这个集合的大小。</p>
+      <p>证明：考虑映射</p>
+      <p>\[
+        \varphi:H\times K\to HK,\qquad \varphi(h,k)=hk.
+      \]</p>
+      <p>按照 \(HK\) 的定义，\(\varphi\) 是满射。我们要计算每个 \(HK\) 中元素有多少个原像。</p>
+      <p>固定 \(g\in HK\)，取一组表示 \(g=h_0k_0\)，其中 \(h_0\in H\)、\(k_0\in K\)。我们说明所有满足 \(hk=g\) 的有序对 \((h,k)\) 恰好由 \(H\cap K\) 参数化。</p>
+      <p>若 \(s\in H\cap K\)，则</p>
+      <p>\[
+        h_0s\in H,\qquad s^{-1}k_0\in K,
+      \]</p>
+      <p>并且</p>
+      <p>\[
+        (h_0s)(s^{-1}k_0)=h_0k_0=g.
+      \]</p>
+      <p>因此每个 \(s\in H\cap K\) 都给出一个原像 \((h_0s,s^{-1}k_0)\)。</p>
+      <p>反过来，若 \((h,k)\in H\times K\) 且 \(hk=g=h_0k_0\)，则</p>
+      <p>\[
+        h_0^{-1}h=k_0k^{-1}.
+      \]</p>
+      <p>左边属于 \(H\)，右边属于 \(K\)，所以这个共同元素属于 \(H\cap K\)。令</p>
+      <p>\[
+        s=h_0^{-1}h\in H\cap K,
+      \]</p>
+      <p>则 \(h=h_0s\)。同时由 \(hk=h_0k_0\) 可得 \(k=s^{-1}k_0\)。因此 \((h,k)\) 必然来自某个 \(s\in H\cap K\)。</p>
+      <p>这说明每个 \(g\in HK\) 在映射 \(\varphi\) 下恰好有 \(|H\cap K|\) 个原像。另一方面，定义域 \(H\times K\) 的大小是 \(|H||K|\)。于是</p>
+      <p>\[
+        |H||K|=|HK|\cdot |H\cap K|.
+      \]</p>
+      <p>整理得到</p>
+      <p>\[
+        |HK|=\frac{|H||K|}{|H\cap K|}.
+      \]</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+    <script src="../assets/js/site-insights.js?v=insights-20260617" defer></script>
+  </body>
+</html>

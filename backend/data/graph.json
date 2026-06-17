@@ -29,6 +29,20 @@
       "tags": ["math", "group"]
     },
     {
+      "id": "coset",
+      "label": "陪集",
+      "kind": "concept",
+      "description": "子群在群中的平移副本，用来把群分拆成等大的块。",
+      "tags": ["math", "group"]
+    },
+    {
+      "id": "lagrange-theorem",
+      "label": "拉格朗日定理",
+      "kind": "concept",
+      "description": "有限群中子群的阶整除整个群的阶。",
+      "tags": ["math", "theorem"]
+    },
+    {
       "id": "res-subgroups",
       "label": "子群、群同态与同构",
       "kind": "resource",
@@ -43,13 +57,24 @@
       "url": "posts/finite-and-cyclic-groups.html",
       "description": "博客文章：有限群、元素阶、生成子群和循环群。",
       "tags": ["html", "article"]
+    },
+    {
+      "id": "res-cosets-lagrange",
+      "label": "陪集和拉格朗日定理",
+      "kind": "resource",
+      "url": "posts/cosets-and-lagrange-theorem.html",
+      "description": "博客文章：陪集、指数、拉格朗日定理和有限子群乘积公式。",
+      "tags": ["html", "article"]
     }
   ],
   "links": [
     { "source": "abstract-algebra", "target": "group-theory", "label": "contains" },
     { "source": "group-theory", "target": "homomorphism", "label": "maps" },
     { "source": "group-theory", "target": "cyclic-group", "label": "special case" },
+    { "source": "group-theory", "target": "coset", "label": "partitions" },
+    { "source": "coset", "target": "lagrange-theorem", "label": "proves" },
     { "source": "homomorphism", "target": "res-subgroups", "label": "article" },
-    { "source": "cyclic-group", "target": "res-cyclic", "label": "article" }
+    { "source": "cyclic-group", "target": "res-cyclic", "label": "article" },
+    { "source": "lagrange-theorem", "target": "res-cosets-lagrange", "label": "article" }
   ]
 }

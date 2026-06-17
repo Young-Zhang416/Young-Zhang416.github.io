@@ -2,6 +2,14 @@
   "generatedAt": "2026-06-17",
   "posts": [
     {
+      "title": "陪集和拉格朗日定理",
+      "url": "posts/cosets-and-lagrange-theorem.html",
+      "date": "2026-06-17",
+      "category": "抽象代数",
+      "words": 1630,
+      "readingMinutes": 4
+    },
+    {
       "title": "重新开始",
       "url": "posts/hello-world.html",
       "date": "2026-06-17",
