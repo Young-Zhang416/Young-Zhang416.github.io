@@ -26,11 +26,6 @@
       <p class="lead">群的同构定理回答同一个问题：当我们把群中的一部分元素“视为无差别”时，剩下的结构到底是什么？它们像拓扑中的压缩、截取与分层，把复杂群结构变成可以比较的形状。</p>
       <div class="article-stats" data-current-post-stats></div>
 
-      <figure class="math-figure">
-        <img src="../assets/images/isomorphism-first-theorem.png" alt="第一同构定理的拓扑压缩示意：一个抽象空间沿核方向压缩到像空间" width="1672" height="941" loading="eager">
-        <figcaption>把正规子群想成“可被压缩的方向”：同构定理说明压缩之后的空间如何与像、交叠区域或二次取商对应。</figcaption>
-      </figure>
-
       <h2>为什么同构定理重要</h2>
       <p>在群论里，“同构”表示两个群虽然元素名字不同，但结构完全一样。同构定理的价值在于，它告诉我们许多看起来不同的商群，其实是在描述同一个结构。</p>
       <p>可以把群想成一个带有对称性的空间。正规子群 \(N\) 像是一组“允许被压扁的方向”：在商群 \(G/N\) 中，所有落在同一个陪集里的元素都被看作同一个点。三大同构定理就是关于这种压缩操作的三条基本规则。</p>
@@ -115,11 +110,6 @@
         H/(H\cap N)\cong HN/N.
       \]</p>
 
-      <figure class="math-figure compact">
-        <img src="../assets/images/isomorphism-second-theorem.png" alt="第二同构定理示意：两个拓扑区域相交并沿一个方向扩展" width="1672" height="941" loading="lazy">
-        <figcaption>第二同构定理说：\(H\) 中与 \(N\) 重叠的部分要被压掉，得到的结构正好是 \(HN\) 压掉 \(N\) 后留下的结构。</figcaption>
-      </figure>
-
       <h3>直观含义</h3>
       <p>把 \(N\) 想成一组“可忽略的方向”。当我们只看子群 \(H\) 时，\(H\) 中真正会被 \(N\) 忽略掉的部分是 \(H\cap N\)。所以 \(H/(H\cap N)\) 是“\(H\) 在忽略 \(N\) 之后剩下的信息”。</p>
       <p>另一方面，\(HN\) 是把 \(H\) 沿着 \(N\) 的方向扩展开得到的集合。再把其中的 \(N\) 整体压掉，得到 \(HN/N\)。定理说这两种做法得到同一个结构。</p>
@@ -176,11 +166,6 @@
       <p>\[
         (G/M)/(N/M)\cong G/N.
       \]</p>
-
-      <figure class="math-figure compact">
-        <img src="../assets/images/isomorphism-third-theorem.png" alt="第三同构定理示意：嵌套层被分步压缩并与直接压缩汇合" width="1672" height="941" loading="lazy">
-        <figcaption>第三同构定理是“分层压缩”的规则：小层 \(M\) 先被压掉，大层 \(N\) 剩下的部分再被压掉，结果等同于一开始就压掉 \(N\)。</figcaption>
-      </figure>
 
       <h3>证明</h3>
       <p>首先，\(G/M\) 是群，因为 \(M\lhd G\)。而</p>
