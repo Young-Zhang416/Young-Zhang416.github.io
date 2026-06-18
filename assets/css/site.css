@@ -502,10 +502,17 @@ h3 {
   max-width: 760px;
 }
 
-.math-figure svg {
+.math-figure svg,
+.math-figure img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.math-figure img {
+  border: 1px solid rgba(0, 167, 255, 0.12);
+  border-radius: 6px;
+  background: #ffffff;
 }
 
 .math-figure text {
