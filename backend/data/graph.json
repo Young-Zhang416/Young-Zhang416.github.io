@@ -57,6 +57,13 @@
       "tags": ["math", "group"]
     },
     {
+      "id": "isomorphism-theorems",
+      "label": "同构定理",
+      "kind": "concept",
+      "description": "描述同态、子群与商群之间结构对应的三条基本定理。",
+      "tags": ["math", "theorem"]
+    },
+    {
       "id": "res-subgroups",
       "label": "子群、群同态与同构",
       "kind": "resource",
@@ -87,6 +94,14 @@
       "url": "posts/normal-subgroups.html",
       "description": "博客文章：正规子群、商群和共轭判别。",
       "tags": ["html", "article"]
+    },
+    {
+      "id": "res-isomorphism-theorems",
+      "label": "群的同构定理",
+      "kind": "resource",
+      "url": "posts/group-isomorphism-theorems.html",
+      "description": "博客文章：三大同构定理的直观解释、完整证明和示意图。",
+      "tags": ["html", "article"]
     }
   ],
   "links": [
@@ -97,9 +112,11 @@
     { "source": "coset", "target": "lagrange-theorem", "label": "proves" },
     { "source": "coset", "target": "normal-subgroup", "label": "balances" },
     { "source": "normal-subgroup", "target": "quotient-group", "label": "forms" },
+    { "source": "quotient-group", "target": "isomorphism-theorems", "label": "organizes" },
     { "source": "homomorphism", "target": "res-subgroups", "label": "article" },
     { "source": "cyclic-group", "target": "res-cyclic", "label": "article" },
     { "source": "lagrange-theorem", "target": "res-cosets-lagrange", "label": "article" },
-    { "source": "normal-subgroup", "target": "res-normal-subgroups", "label": "article" }
+    { "source": "normal-subgroup", "target": "res-normal-subgroups", "label": "article" },
+    { "source": "isomorphism-theorems", "target": "res-isomorphism-theorems", "label": "article" }
   ]
 }

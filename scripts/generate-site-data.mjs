@@ -69,7 +69,7 @@ function extractTag(html, tag) {
 }
 
 function extractDate(html) {
-  const match = html.match(/<time[^>]+datetime="([^"]+)"/i) || html.match(/抽象代数\s*·\s*(\d{4}\.\d{2}\.\d{2})/);
+  const match = html.match(/<time[^>]+datetime="([^"]+)"/i) || html.match(/<p class="eyebrow">[^<]*(\d{4}\.\d{2}\.\d{2})[^<]*<\/p>/i);
   if (!match) return todayKey();
   return match[1].replaceAll(".", "-");
 }

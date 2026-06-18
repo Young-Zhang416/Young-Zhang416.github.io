@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="抽象代数笔记：群的三大同构定理，含直观解释、完整证明和示意图。">
+    <title>群的同构定理 | Young Zhang</title>
+    <link rel="stylesheet" href="../assets/css/site.css?v=isomorphism-20260619">
+    <script src="../assets/js/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../posts.html">文章</a>
+        <a href="../knowledge.html">图谱</a>
+        <a href="../about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">抽象代数 · 2026.06.19</p>
+      <h1>群的同构定理</h1>
+      <p class="lead">群的同构定理回答同一个问题：当我们把群中的一部分元素“视为无差别”时，剩下的结构到底是什么？它们像拓扑中的压缩、截取与分层，把复杂群结构变成可以比较的形状。</p>
+      <div class="article-stats" data-current-post-stats></div>
+
+      <figure class="math-figure">
+        <svg viewBox="0 0 960 320" role="img" aria-label="三大同构定理的拓扑示意">
+          <defs>
+            <linearGradient id="isoA" x1="0" x2="1">
+              <stop offset="0" stop-color="#00a7ff" stop-opacity="0.7"/>
+              <stop offset="1" stop-color="#6c7cff" stop-opacity="0.7"/>
+            </linearGradient>
+            <linearGradient id="isoB" x1="0" x2="1">
+              <stop offset="0" stop-color="#19d5bd" stop-opacity="0.6"/>
+              <stop offset="1" stop-color="#f59e42" stop-opacity="0.55"/>
+            </linearGradient>
+          </defs>
+          <rect x="30" y="42" width="250" height="210" rx="32" fill="url(#isoA)" opacity="0.22" stroke="#00a7ff"/>
+          <ellipse cx="155" cy="148" rx="70" ry="42" fill="#ffffff" opacity="0.7" stroke="#00a7ff"/>
+          <text x="155" y="122" text-anchor="middle">G</text>
+          <text x="155" y="154" text-anchor="middle">ker(f)</text>
+          <path d="M290 150 C350 96, 405 96, 465 150" fill="none" stroke="#6c7cff" stroke-width="4"/>
+          <polygon points="462,150 446,141 448,160" fill="#6c7cff"/>
+          <rect x="485" y="80" width="170" height="140" rx="28" fill="#eef7ff" stroke="#6c7cff"/>
+          <text x="570" y="138" text-anchor="middle">im(f)</text>
+          <text x="570" y="166" text-anchor="middle">G/ker(f)</text>
+          <ellipse cx="750" cy="128" rx="92" ry="58" fill="#19d5bd" opacity="0.22" stroke="#19d5bd"/>
+          <ellipse cx="810" cy="158" rx="92" ry="58" fill="#f59e42" opacity="0.22" stroke="#f59e42"/>
+          <text x="724" y="124" text-anchor="middle">H</text>
+          <text x="842" y="164" text-anchor="middle">N</text>
+          <text x="780" y="206" text-anchor="middle">H∩N</text>
+          <text x="480" y="286" text-anchor="middle">压扁核、比较重叠、分层取商</text>
+        </svg>
+        <figcaption>把正规子群想成“可被压缩的方向”：同构定理说明压缩之后的空间如何与像、交叠区域或二次取商对应。</figcaption>
+      </figure>
+
+      <h2>为什么同构定理重要</h2>
+      <p>在群论里，“同构”表示两个群虽然元素名字不同，但结构完全一样。同构定理的价值在于，它告诉我们许多看起来不同的商群，其实是在描述同一个结构。</p>
+      <p>可以把群想成一个带有对称性的空间。正规子群 \(N\) 像是一组“允许被压扁的方向”：在商群 \(G/N\) 中，所有落在同一个陪集里的元素都被看作同一个点。三大同构定理就是关于这种压缩操作的三条基本规则。</p>
+
+      <h2>第一同构定理：同态就是先压扁核，再嵌入像</h2>
+      <p>定理：令 \(f:G\to G'\) 是群同态，则 \(\ker(f)\lhd G\)，并且</p>
+      <p>\[
+        G/\ker(f)\cong \operatorname{im}(f).
+      \]</p>
+      <p>特别地，如果 \(f\) 是满同态，则</p>
+      <p>\[
+        G/\ker(f)\cong G'.
+      \]</p>
+      <p>如果 \(f\) 是单同态，则 \(\ker(f)=\{e\}\)，于是</p>
+      <p>\[
+        G/\{e\}\cong \operatorname{im}(f).
+      \]</p>
+      <p>若 \(G\) 是有限群，则</p>
+      <p>\[
+        \frac{|G|}{|\ker(f)|}=|\operatorname{im}(f)|.
+      \]</p>
+
+      <h3>直观含义</h3>
+      <p>同态 \(f\) 会把某些元素送到目标群的单位元，这些元素组成 \(\ker(f)\)。从 \(f\) 的视角看，核里的元素都“没有被看见”。所以 \(f\) 实际上先把 \(G\) 中相差一个核元素的点压成同一个点，然后把这些点一一对应到 \(\operatorname{im}(f)\)。</p>
+      <p>拓扑上可以想象成：一张带纹理的布 \(G\)，沿着核方向折叠或压扁，得到 \(G/\ker(f)\)；压扁后的形状正好就是 \(f\) 真正画出来的像。</p>
+
+      <h3>证明</h3>
+      <p>第一步，证明 \(\ker(f)\lhd G\)。我们已经知道核是子群。现在证明它正规。任取 \(a\in G\)、\(n\in\ker(f)\)，则</p>
+      <p>\[
+        f(ana^{-1})=f(a)f(n)f(a)^{-1}=f(a)e'f(a)^{-1}=e'.
+      \]</p>
+      <p>所以 \(ana^{-1}\in\ker(f)\)。由共轭判别，\(\ker(f)\lhd G\)。</p>
+      <p>第二步，定义映射</p>
+      <p>\[
+        \varphi:G/\ker(f)\to \operatorname{im}(f),\qquad \varphi(a\ker(f))=f(a).
+      \]</p>
+      <p>记 \(N=\ker(f)\)。先证明 \(\varphi\) 良定义。若 \(aN=bN\)，则 \(b^{-1}a\in N\)，于是</p>
+      <p>\[
+        e'=f(b^{-1}a)=f(b)^{-1}f(a).
+      \]</p>
+      <p>两边左乘 \(f(b)\)，得到 \(f(a)=f(b)\)。因此不同代表元不会改变 \(\varphi\) 的值。</p>
+      <p>第三步，证明 \(\varphi\) 是群同态。对任意 \(aN,bN\in G/N\)，有</p>
+      <p>\[
+        \varphi((aN)(bN))=\varphi(abN)=f(ab)=f(a)f(b)=\varphi(aN)\varphi(bN).
+      \]</p>
+      <p>第四步，证明 \(\varphi\) 是单射。若 \(\varphi(aN)=e'\)，则 \(f(a)=e'\)，所以 \(a\in N\)，从而 \(aN=N\)。这说明 \(\ker(\varphi)=\{N\}\)，因此 \(\varphi\) 单射。</p>
+      <p>第五步，证明 \(\varphi\) 是满射。任取 \(y\in\operatorname{im}(f)\)，存在 \(a\in G\)，使 \(y=f(a)\)。于是 \(y=\varphi(aN)\)。因此 \(\varphi\) 满射。</p>
+      <p>综上，\(\varphi\) 是双射群同态，所以</p>
+      <p>\[
+        G/\ker(f)\cong \operatorname{im}(f).
+      \]</p>
+      <p>若 \(G\) 有限，则由拉格朗日定理 \(|G/\ker(f)|=|G|/|\ker(f)|\)，又因为 \(G/\ker(f)\cong \operatorname{im}(f)\)，得到</p>
+      <p>\[
+        \frac{|G|}{|\ker(f)|}=|\operatorname{im}(f)|.
+      \]</p>
+
+      <h3>例子：行列式</h3>
+      <p>考虑行列式同态</p>
+      <p>\[
+        \det:\mathrm{GL}_n(\mathbb{R})\to \mathbb{R}^{\times}.
+      \]</p>
+      <p>它的核是</p>
+      <p>\[
+        \ker(\det)=\mathrm{SL}_n(\mathbb{R}),
+      \]</p>
+      <p>即行列式为 \(1\) 的可逆矩阵。行列式映射是满的，所以第一同构定理给出</p>
+      <p>\[
+        \mathrm{GL}_n(\mathbb{R})/\mathrm{SL}_n(\mathbb{R})\cong \mathbb{R}^{\times}.
+      \]</p>
+      <p>这句话的直观含义是：如果把所有行列式为 \(1\) 的“体积保持变换”都压成单位，那么 \(\mathrm{GL}_n(\mathbb{R})\) 剩下能被检测到的信息，就是行列式这个非零实数。</p>
+
+      <h3>例子：互素阶循环群之间的同态</h3>
+      <p>设有群同态 \(f:C_{12}\to C_{35}\)。因为 \(\operatorname{im}(f)\) 是 \(C_{35}\) 的子群，所以 \(|\operatorname{im}(f)|\mid 35\)。另一方面，由第一同构定理，\(|\operatorname{im}(f)|\mid 12\)。因此</p>
+      <p>\[
+        |\operatorname{im}(f)|\mid \gcd(12,35)=1.
+      \]</p>
+      <p>所以 \(|\operatorname{im}(f)|=1\)，也就是 \(\operatorname{im}(f)=\{e'\}\)。因此任何从 \(C_{12}\) 到 \(C_{35}\) 的同态都是平凡同态。</p>
+
+      <h2>第二同构定理：先取一块，再加上正规方向</h2>
+      <p>定理：设 \(G\) 是群，\(N\lhd G\)，\(H&lt;G\)。则 \(HN&lt;G\)，\(H\cap N\lhd H\)，\(N\lhd HN\)，并且</p>
+      <p>\[
+        H/(H\cap N)\cong HN/N.
+      \]</p>
+
+      <figure class="math-figure compact">
+        <svg viewBox="0 0 760 260" role="img" aria-label="第二同构定理示意">
+          <ellipse cx="292" cy="126" rx="170" ry="88" fill="#19d5bd" opacity="0.18" stroke="#19d5bd"/>
+          <ellipse cx="458" cy="126" rx="170" ry="88" fill="#6c7cff" opacity="0.18" stroke="#6c7cff"/>
+          <text x="240" y="126" text-anchor="middle">H</text>
+          <text x="510" y="126" text-anchor="middle">N</text>
+          <text x="376" y="126" text-anchor="middle">H∩N</text>
+          <path d="M180 218 C290 242, 470 242, 580 218" fill="none" stroke="#00a7ff" stroke-width="3"/>
+          <text x="380" y="244" text-anchor="middle">HN：把 H 沿 N 的方向扫过去</text>
+        </svg>
+        <figcaption>第二同构定理说：\(H\) 中与 \(N\) 重叠的部分要被压掉，得到的结构正好是 \(HN\) 压掉 \(N\) 后留下的结构。</figcaption>
+      </figure>
+
+      <h3>直观含义</h3>
+      <p>把 \(N\) 想成一组“可忽略的方向”。当我们只看子群 \(H\) 时，\(H\) 中真正会被 \(N\) 忽略掉的部分是 \(H\cap N\)。所以 \(H/(H\cap N)\) 是“\(H\) 在忽略 \(N\) 之后剩下的信息”。</p>
+      <p>另一方面，\(HN\) 是把 \(H\) 沿着 \(N\) 的方向扩展开得到的集合。再把其中的 \(N\) 整体压掉，得到 \(HN/N\)。定理说这两种做法得到同一个结构。</p>
+
+      <h3>证明</h3>
+      <p>第一步，证明 \(HN&lt;G\)。显然 \(HN\subset G\)，且 \(e=ee\in HN\)。任取 \(h_1n_1,h_2n_2\in HN\)，其中 \(h_1,h_2\in H\)、\(n_1,n_2\in N\)。考虑</p>
+      <p>\[
+        (h_1n_1)(h_2n_2)^{-1}=h_1n_1n_2^{-1}h_2^{-1}.
+      \]</p>
+      <p>由于 \(N\lhd G\)，有 \(h_2(n_1n_2^{-1})h_2^{-1}\in N\)。于是</p>
+      <p>\[
+        h_1n_1n_2^{-1}h_2^{-1}
+        =h_1h_2^{-1}\cdot h_2(n_1n_2^{-1})h_2^{-1}.
+      \]</p>
+      <p>其中 \(h_1h_2^{-1}\in H\)，而 \(h_2(n_1n_2^{-1})h_2^{-1}\in N\)，所以这个元素属于 \(HN\)。由子群判别法，\(HN&lt;G\)。</p>
+      <p>第二步，证明 \(H\cap N\lhd H\)。任取 \(h\in H\)、\(s\in H\cap N\)。因为 \(H\) 是子群，\(hsh^{-1}\in H\)。又因为 \(N\lhd G\)，\(hsh^{-1}\in N\)。因此 \(hsh^{-1}\in H\cap N\)。由共轭判别，\(H\cap N\lhd H\)。</p>
+      <p>第三步，证明 \(N\lhd HN\)。任取 \(hn\in HN\) 与 \(n_1\in N\)，有</p>
+      <p>\[
+        (hn)n_1(hn)^{-1}=h(nn_1n^{-1})h^{-1}.
+      \]</p>
+      <p>因为 \(N\) 是子群，\(nn_1n^{-1}\in N\)。又因为 \(N\lhd G\)，对 \(h\in H\subset G\)，有</p>
+      <p>\[
+        h(nn_1n^{-1})h^{-1}\in N.
+      \]</p>
+      <p>所以 \(N\lhd HN\)。</p>
+      <p>第四步，构造同构。定义</p>
+      <p>\[
+        \psi:H\to HN/N,\qquad \psi(h)=hN.
+      \]</p>
+      <p>这是群同态，因为</p>
+      <p>\[
+        \psi(h_1h_2)=h_1h_2N=(h_1N)(h_2N)=\psi(h_1)\psi(h_2).
+      \]</p>
+      <p>它是满射：任取 \(HN/N\) 中的元素 \((hn)N\)，由于 \(n\in N\)，有</p>
+      <p>\[
+        (hn)N=hN.
+      \]</p>
+      <p>所以 \((hn)N=\psi(h)\)。</p>
+      <p>它的核为</p>
+      <p>\[
+        \ker(\psi)=\{h\in H:hN=N\}.
+      \]</p>
+      <p>由陪集判别 \(hN=N\iff h\in N\)，得到</p>
+      <p>\[
+        \ker(\psi)=H\cap N.
+      \]</p>
+      <p>由第一同构定理，</p>
+      <p>\[
+        H/(H\cap N)\cong HN/N.
+      \]</p>
+
+      <h2>第三同构定理：分两次压缩等于一次压缩</h2>
+      <p>定理：设 \(M\lhd G\)、\(N\lhd G\)，且 \(M&lt;N\)。则 \(N/M\lhd G/M\)，并且</p>
+      <p>\[
+        (G/M)/(N/M)\cong G/N.
+      \]</p>
+
+      <figure class="math-figure compact">
+        <svg viewBox="0 0 760 260" role="img" aria-label="第三同构定理示意">
+          <rect x="70" y="42" width="190" height="150" rx="26" fill="#eef7ff" stroke="#00a7ff"/>
+          <rect x="112" y="78" width="110" height="78" rx="18" fill="#dfe8ff" stroke="#6c7cff"/>
+          <text x="165" y="72" text-anchor="middle">G</text>
+          <text x="167" y="122" text-anchor="middle">N</text>
+          <text x="167" y="151" text-anchor="middle">M</text>
+          <path d="M286 116 H408" stroke="#6c7cff" stroke-width="4"/>
+          <polygon points="408,116 392,107 392,125" fill="#6c7cff"/>
+          <rect x="430" y="58" width="130" height="118" rx="22" fill="#f3f2ff" stroke="#6c7cff"/>
+          <text x="495" y="112" text-anchor="middle">G/M</text>
+          <text x="495" y="142" text-anchor="middle">N/M</text>
+          <path d="M582 116 H680" stroke="#19d5bd" stroke-width="4"/>
+          <polygon points="680,116 664,107 664,125" fill="#19d5bd"/>
+          <text x="625" y="90" text-anchor="middle">再除</text>
+          <text x="625" y="176" text-anchor="middle">等于 G/N</text>
+          <path d="M165 204 C275 246, 535 246, 650 204" fill="none" stroke="#00a7ff" stroke-width="3" stroke-dasharray="8 8"/>
+          <text x="410" y="244" text-anchor="middle">先压 M，再压 N/M；等价于直接压 N</text>
+        </svg>
+        <figcaption>第三同构定理是“分层压缩”的规则：小层 \(M\) 先被压掉，大层 \(N\) 剩下的部分再被压掉，结果等同于一开始就压掉 \(N\)。</figcaption>
+      </figure>
+
+      <h3>证明</h3>
+      <p>首先，\(G/M\) 是群，因为 \(M\lhd G\)。而</p>
+      <p>\[
+        N/M=\{nM:n\in N\}
+      \]</p>
+      <p>是 \(G/M\) 的子群。确实，若 \(n_1M,n_2M\in N/M\)，则</p>
+      <p>\[
+        (n_1M)(n_2M)^{-1}=n_1n_2^{-1}M\in N/M,
+      \]</p>
+      <p>因为 \(N\) 是子群。</p>
+      <p>接着证明 \(N/M\lhd G/M\)。任取 \(gM\in G/M\)、\(nM\in N/M\)，有</p>
+      <p>\[
+        (gM)(nM)(gM)^{-1}=gng^{-1}M.
+      \]</p>
+      <p>因为 \(N\lhd G\)，所以 \(gng^{-1}\in N\)，于是 \(gng^{-1}M\in N/M\)。因此 \(N/M\lhd G/M\)。</p>
+      <p>现在构造同态</p>
+      <p>\[
+        \theta:G/M\to G/N,\qquad \theta(gM)=gN.
+      \]</p>
+      <p>先证明良定义。若 \(gM=g'M\)，则 \(g'^{-1}g\in M\)。因为 \(M&lt;N\)，所以 \(g'^{-1}g\in N\)，从而 \(gN=g'N\)。因此 \(\theta\) 良定义。</p>
+      <p>再证明它是群同态：</p>
+      <p>\[
+        \theta((gM)(hM))=\theta(ghM)=ghN=(gN)(hN)=\theta(gM)\theta(hM).
+      \]</p>
+      <p>它是满射：任取 \(gN\in G/N\)，有 \(gN=\theta(gM)\)。</p>
+      <p>计算核：</p>
+      <p>\[
+        \ker(\theta)=\{gM\in G/M:gN=N\}.
+      \]</p>
+      <p>由 \(gN=N\iff g\in N\)，可得</p>
+      <p>\[
+        \ker(\theta)=\{gM:g\in N\}=N/M.
+      \]</p>
+      <p>由第一同构定理，</p>
+      <p>\[
+        (G/M)/(N/M)\cong G/N.
+      \]</p>
+
+      <h2>三条定理放在一起看</h2>
+      <p>第一同构定理说：一个同态的像，就是把定义域按核压缩后的结果。</p>
+      <p>第二同构定理说：当一个子群 \(H\) 遇到一个正规子群 \(N\) 时，\(H\) 中真正被压掉的部分是 \(H\cap N\)，结果等同于在 \(HN\) 中压掉 \(N\)。</p>
+      <p>第三同构定理说：如果 \(M\subset N\)，那么“先除 \(M\)，再除 \(N/M\)”与“直接除 \(N\)”没有区别。</p>
+      <p>这三条定理的共同主题是：商群不是随意丢信息，而是在严格记录“哪些元素被识别为同一个”的同时，保留剩下的群结构。</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+    <script src="../assets/js/site-insights.js?v=insights-20260617" defer></script>
+    <script src="../assets/js/site-effects.js?v=effects-20260617" defer></script>
+  </body>
+</html>
