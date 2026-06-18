@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="抽象代数笔记：正规子群、商群、共轭判别和基本例子。">
+    <title>正规子群 | Young Zhang</title>
+    <link rel="stylesheet" href="../assets/css/site.css?v=effects-20260617">
+    <script src="../assets/js/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../posts.html">文章</a>
+        <a href="../knowledge.html">图谱</a>
+        <a href="../about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">抽象代数 · 2026.06.18</p>
+      <h1>正规子群</h1>
+      <p class="lead">正规子群是那些左右陪集一致的子群。它们的意义在于：只有在正规子群上取商，陪集之间的乘法才不依赖代表元，从而可以得到真正的商群。</p>
+      <div class="article-stats" data-current-post-stats></div>
+
+      <h2>定义</h2>
+      <p>设 \((G,\cdot)\) 是一个群，\(N\subset G\)。若 \(N\) 是 \(G\) 的子群，并且对任意 \(a\in G\)，都有</p>
+      <p>\[
+        aN=Na,
+      \]</p>
+      <p>则称 \(N\) 是 \(G\) 的正规子群，记作 \(N\lhd G\)。</p>
+      <p>这里</p>
+      <p>\[
+        aN=\{an:n\in N\},\qquad Na=\{na:n\in N\}
+      \]</p>
+      <p>分别是左陪集和右陪集。正规性的意思不是说 \(a\) 与 \(N\) 中每个元素都可交换，而是说左乘形成的陪集与右乘形成的陪集作为集合相同。</p>
+
+      <h2>几个基本例子</h2>
+      <p>第一，\(\{e\}\) 与 \(G\) 本身总是正规子群。它们是最平凡但最重要的边界例子。</p>
+      <p>第二，若 \(G\) 是阿贝尔群，则 \(G\) 的任意子群 \(H\) 都是正规子群。因为对任意 \(a\in G\)、\(h\in H\)，有 \(ah=ha\)，所以 \(aH=Ha\)。</p>
+      <p>第三，任意群同态 \(f:G\to G'\) 的核 \(\ker(f)\) 都是正规子群。若 \(x\in\ker(f)\)，则对任意 \(a\in G\)，</p>
+      <p>\[
+        f(axa^{-1})=f(a)f(x)f(a)^{-1}=f(a)e'f(a)^{-1}=e',
+      \]</p>
+      <p>所以 \(axa^{-1}\in\ker(f)\)。这说明核在共轭下稳定，因而是正规子群。</p>
+      <p>第四，\(\langle(12)\rangle\) 是 \(S_3\) 的子群，但不是正规子群。因为</p>
+      <p>\[
+        (123)(12)(123)^{-1}=(23),
+      \]</p>
+      <p>而 \((23)\notin\langle(12)\rangle=\{e,(12)\}\)。这说明“子群”并不自动意味着“正规子群”。</p>
+
+      <h2>正规子群让陪集乘法良定义</h2>
+      <p>命题：设 \(N\lhd G\)，对 \(a,b\in G\)，定义</p>
+      <p>\[
+        (aN)(bN)=(ab)N.
+      \]</p>
+      <p>则这个乘法是良定义的。</p>
+      <p>所谓良定义，是指如果换掉代表元，结果不变。也就是说，若</p>
+      <p>\[
+        aN=a'N,\qquad bN=b'N,
+      \]</p>
+      <p>则必须证明</p>
+      <p>\[
+        (ab)N=(a'b')N.
+      \]</p>
+      <p>由陪集相等判别 \(xN=yN\iff y^{-1}x\in N\)，可知</p>
+      <p>\[
+        a'^{-1}a\in N,\qquad b'^{-1}b\in N.
+      \]</p>
+      <p>要证明 \((ab)N=(a'b')N\)，仍由陪集相等判别，只需证明</p>
+      <p>\[
+        (a'b')^{-1}ab=b'^{-1}a'^{-1}ab\in N.
+      \]</p>
+      <p>把它拆成</p>
+      <p>\[
+        b'^{-1}(a'^{-1}a)b.
+      \]</p>
+      <p>由于 \(a'^{-1}a\in N\)，记 \(n=a'^{-1}a\)。又因为 \(N\lhd G\)，所以对任意 \(g\in G\)，都有 \(g^{-1}Ng=N\)。取 \(g=b'\)，得到</p>
+      <p>\[
+        b'^{-1}Nb'=N.
+      \]</p>
+      <p>另一方面，由 \(b'^{-1}b\in N\)，可写 \(b=b'n_2\)，其中 \(n_2\in N\)。于是</p>
+      <p>\[
+        b'^{-1}a'^{-1}ab=b'^{-1}nb'n_2.
+      \]</p>
+      <p>其中 \(b'^{-1}nb'\in N\)，且 \(n_2\in N\)。因为 \(N\) 是子群，对乘法封闭，所以</p>
+      <p>\[
+        b'^{-1}nb'n_2\in N.
+      \]</p>
+      <p>因此 \((ab)N=(a'b')N\)，乘法良定义。</p>
+
+      <h2>从集合乘法看良定义</h2>
+      <p>也可以把陪集乘法理解成子集乘法：</p>
+      <p>\[
+        (aN)(bN)=\{xy:x\in aN,\ y\in bN\}.
+      \]</p>
+      <p>如果 \(N\lhd G\)，则</p>
+      <p>\[
+        (aN)(bN)=a(Nb)N.
+      \]</p>
+      <p>因为 \(N\) 正规，\(Nb=bN\)，所以</p>
+      <p>\[
+        a(Nb)N=a(bN)N=abNN.
+      \]</p>
+      <p>而 \(NN=N\)：一方面，若 \(n_1,n_2\in N\)，则 \(n_1n_2\in N\)，所以 \(NN\subset N\)；另一方面，由 \(e\in N\)，任取 \(n\in N\)，有 \(n=ne\in NN\)，所以 \(N\subset NN\)。因此</p>
+      <p>\[
+        (aN)(bN)=abN.
+      \]</p>
+      <p>这个等式说明，无论先选择陪集中的哪些元素相乘，最终集合层面的结果都只由陪集 \(aN\) 和 \(bN\) 决定。</p>
+
+      <h2>商群</h2>
+      <p>命题：若 \(N\lhd G\)，则 \(G/N\) 在运算</p>
+      <p>\[
+        (aN)(bN)=(ab)N
+      \]</p>
+      <p>下构成一个群，称为 \(G\) 关于 \(N\) 的商群。单位元是 \(eN=N\)，陪集 \(aN\) 的逆元是 \(a^{-1}N\)。</p>
+      <p>证明：首先，封闭性成立。因为 \(a,b\in G\) 时 \(ab\in G\)，所以 \((ab)N\) 仍然是 \(G/N\) 的一个元素。</p>
+      <p>其次，结合律来自 \(G\) 中的结合律。任取 \(aN,bN,cN\in G/N\)，有</p>
+      <p>\[
+        ((aN)(bN))(cN)=((ab)N)(cN)=((ab)c)N,
+      \]</p>
+      <p>而</p>
+      <p>\[
+        (aN)((bN)(cN))=(aN)((bc)N)=(a(bc))N.
+      \]</p>
+      <p>由于 \((ab)c=a(bc)\)，两者相等。</p>
+      <p>再次，\(eN=N\) 是单位元。因为</p>
+      <p>\[
+        (eN)(aN)=(ea)N=aN,
+      \]</p>
+      <p>\[
+        (aN)(eN)=(ae)N=aN.
+      \]</p>
+      <p>最后，每个 \(aN\) 都有逆元 \(a^{-1}N\)，因为</p>
+      <p>\[
+        (aN)(a^{-1}N)=(aa^{-1})N=eN=N,
+      \]</p>
+      <p>\[
+        (a^{-1}N)(aN)=(a^{-1}a)N=eN=N.
+      \]</p>
+      <p>由封闭性、结合律、单位元和逆元可知，\(G/N\) 是群。</p>
+
+      <h2>共轭判别</h2>
+      <p>引理：设 \(N&lt;G\)。以下条件等价：</p>
+      <p>\[
+        \forall a\in G,\ aN=Na,
+      \]</p>
+      <p>\[
+        \forall a\in G,\ aNa^{-1}\subset N,
+      \]</p>
+      <p>\[
+        \forall a\in G,\ \forall n\in N,\ ana^{-1}\in N.
+      \]</p>
+      <p>第二个条件和第三个条件只是集合语言与元素语言的互译。下面证明第一个条件与第二个条件等价。</p>
+      <p>先证左推右。若 \(aN=Na\)，则右乘 \(a^{-1}\)，得到</p>
+      <p>\[
+        aNa^{-1}=Naa^{-1}=N.
+      \]</p>
+      <p>因此当然有 \(aNa^{-1}\subset N\)。</p>
+      <p>再证右推左。假设对任意 \(a\in G\)，都有 \(aNa^{-1}\subset N\)。右乘 \(a\)，得到</p>
+      <p>\[
+        aN\subset Na.
+      \]</p>
+      <p>另一方面，把假设应用到 \(a^{-1}\)，得到</p>
+      <p>\[
+        a^{-1}Na\subset N.
+      \]</p>
+      <p>左乘 \(a\)，右乘 \(a^{-1}\)，得到</p>
+      <p>\[
+        N\subset aNa^{-1}.
+      \]</p>
+      <p>再右乘 \(a\)，得到</p>
+      <p>\[
+        Na\subset aN.
+      \]</p>
+      <p>于是 \(aN\subset Na\) 且 \(Na\subset aN\)，所以 \(aN=Na\)。</p>
+      <p>因此，正规性可以等价地理解为：\(N\) 在 \(G\) 的任意共轭作用下保持不变。</p>
+
+      <h2>正规子群的交仍是正规子群</h2>
+      <p>命题：若 \((N_i)_{i\in I}\) 是一族 \(G\) 的正规子群，则</p>
+      <p>\[
+        \bigcap_{i\in I}N_i\lhd G.
+      \]</p>
+      <p>证明：先证它是子群。记</p>
+      <p>\[
+        N=\bigcap_{i\in I}N_i.
+      \]</p>
+      <p>因为每个 \(N_i\) 都是子群，所以 \(e\in N_i\) 对所有 \(i\) 成立，于是 \(e\in N\)。</p>
+      <p>若 \(x,y\in N\)，则对每个 \(i\)，都有 \(x,y\in N_i\)。由于 \(N_i\) 是子群，\(xy^{-1}\in N_i\)。这对所有 \(i\) 都成立，所以 \(xy^{-1}\in N\)。由子群判别法，\(N&lt;G\)。</p>
+      <p>再证正规性。任取 \(a\in G\)、\(n\in N\)。因为 \(n\in N_i\) 对所有 \(i\) 成立，而每个 \(N_i\lhd G\)，所以</p>
+      <p>\[
+        ana^{-1}\in N_i,\qquad \forall i\in I.
+      \]</p>
+      <p>因此 \(ana^{-1}\in\bigcap_{i\in I}N_i=N\)。由共轭判别，\(N\lhd G\)。</p>
+
+      <h2>平凡正规子群与阿贝尔群</h2>
+      <p>命题：对任意群 \(G\)，都有</p>
+      <p>\[
+        \{e\}\lhd G,\qquad G\lhd G.
+      \]</p>
+      <p>证明：\(\{e\}\) 显然是 \(G\) 的子群。任取 \(a\in G\)，有</p>
+      <p>\[
+        a\{e\}=\{a\}=\{e\}a,
+      \]</p>
+      <p>所以 \(\{e\}\lhd G\)。</p>
+      <p>同样，\(G\) 是自身的子群。任取 \(a\in G\)，有 \(aG=G\)，因为左乘 \(a\) 是 \(G\) 到 \(G\) 的双射；也有 \(Ga=G\)，因为右乘 \(a\) 也是双射。因此 \(aG=Ga\)，所以 \(G\lhd G\)。</p>
+      <p>如果 \(G\) 是阿贝尔群，那么任意子群 \(H&lt;G\) 都正规。因为对任意 \(a\in G\)、\(h\in H\)，交换律给出 \(ah=ha\)，从而</p>
+      <p>\[
+        aH=\{ah:h\in H\}=\{ha:h\in H\}=Ha.
+      \]</p>
+      <p>所以在阿贝尔群中，“子群”和“正规子群”没有区别；正规性真正体现非平凡内容的地方，是非阿贝尔群。</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+    <script src="../assets/js/site-insights.js?v=insights-20260617" defer></script>
+    <script src="../assets/js/site-effects.js?v=effects-20260617" defer></script>
+  </body>
+</html>

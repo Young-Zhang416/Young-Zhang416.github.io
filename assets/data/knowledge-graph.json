@@ -43,6 +43,20 @@
       "tags": ["math", "theorem"]
     },
     {
+      "id": "normal-subgroup",
+      "label": "正规子群",
+      "kind": "concept",
+      "description": "左右陪集一致、可用于构造商群的特殊子群。",
+      "tags": ["math", "group"]
+    },
+    {
+      "id": "quotient-group",
+      "label": "商群",
+      "kind": "concept",
+      "description": "在正规子群上取陪集并定义乘法得到的新群。",
+      "tags": ["math", "group"]
+    },
+    {
       "id": "res-subgroups",
       "label": "子群、群同态与同构",
       "kind": "resource",
@@ -64,6 +78,14 @@
       "kind": "resource",
       "url": "posts/cosets-and-lagrange-theorem.html",
       "description": "博客文章：陪集、指数、拉格朗日定理和有限子群乘积公式。",
+      "tags": ["html", "article"]
+    },
+    {
+      "id": "res-normal-subgroups",
+      "label": "正规子群",
+      "kind": "resource",
+      "url": "posts/normal-subgroups.html",
+      "description": "博客文章：正规子群、商群和共轭判别。",
       "tags": ["html", "article"]
     },
     {
@@ -105,10 +127,13 @@
     { "source": "group-theory", "target": "cyclic-group", "label": "special case" },
     { "source": "group-theory", "target": "coset", "label": "partitions" },
     { "source": "coset", "target": "lagrange-theorem", "label": "proves" },
+    { "source": "coset", "target": "normal-subgroup", "label": "balances" },
+    { "source": "normal-subgroup", "target": "quotient-group", "label": "forms" },
     { "source": "abstract-algebra", "target": "res-category", "label": "index" },
     { "source": "homomorphism", "target": "res-subgroups", "label": "article" },
     { "source": "cyclic-group", "target": "res-cyclic", "label": "article" },
     { "source": "lagrange-theorem", "target": "res-cosets-lagrange", "label": "article" },
+    { "source": "normal-subgroup", "target": "res-normal-subgroups", "label": "article" },
     { "source": "abstract-algebra", "target": "res-example-md", "label": "note" },
     { "source": "abstract-algebra", "target": "res-example-pdf", "label": "paper" },
     { "source": "group-theory", "target": "res-wikipedia-group", "label": "reference" }

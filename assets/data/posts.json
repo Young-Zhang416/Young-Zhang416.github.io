@@ -1,6 +1,22 @@
 {
-  "generatedAt": "2026-06-17",
+  "generatedAt": "2026-06-18",
   "posts": [
+    {
+      "title": "正规子群",
+      "url": "posts/normal-subgroups.html",
+      "date": "2026-06-18",
+      "category": "抽象代数",
+      "words": 1615,
+      "readingMinutes": 4
+    },
+    {
+      "title": "重新开始",
+      "url": "posts/hello-world.html",
+      "date": "2026-06-18",
+      "category": "站点",
+      "words": 73,
+      "readingMinutes": 1
+    },
     {
       "title": "陪集和拉格朗日定理",
       "url": "posts/cosets-and-lagrange-theorem.html",
@@ -8,14 +24,6 @@
       "category": "抽象代数",
       "words": 1630,
       "readingMinutes": 4
-    },
-    {
-      "title": "重新开始",
-      "url": "posts/hello-world.html",
-      "date": "2026-06-17",
-      "category": "站点",
-      "words": 73,
-      "readingMinutes": 1
     },
     {
       "title": "有限群、元素的阶与循环群",
