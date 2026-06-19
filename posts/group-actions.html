@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="抽象代数笔记：群作用、置换群、左乘作用、共轭作用、轨道稳定子、类方程与 Burnside 引理。">
+    <title>群作用 | Young Zhang</title>
+    <link rel="stylesheet" href="../assets/css/site.css?v=effects-20260617">
+    <script src="../assets/js/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../posts.html">文章</a>
+        <a href="../knowledge.html">图谱</a>
+        <a href="../about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">抽象代数 · 2026.06.19</p>
+      <h1>群作用</h1>
+      <p class="lead">群作用把“抽象的群元素”解释成“对某个集合的运动”。它是群论从内部结构走向几何、组合、对称性与计数问题的入口。</p>
+      <div class="article-stats" data-current-post-stats></div>
+
+      <h2>群作用到底在说什么</h2>
+      <p>一个群 \(G\) 本身只是元素和乘法。群作用则多问一步：这些元素能不能真的“动”某个集合 \(S\)？如果每个 \(x\in G\) 都对应 \(S\) 上的一个可逆变换，并且群乘法与变换复合相容，那么我们就说 \(G\) 作用在 \(S\) 上。</p>
+      <p>直观地说，群作用是把群变成一台对称性机器：输入一个群元素，它就在集合上执行一次运动；先执行 \(y\)，再执行 \(x\)，应该等价于执行群乘积 \(xy\)。</p>
+
+      <figure class="math-figure">
+        <svg viewBox="0 0 920 300" role="img" aria-label="群作用把群元素送到集合上的置换">
+          <rect x="42" y="58" width="230" height="170" rx="24" fill="#eaf7ff" stroke="#00a7ff"/>
+          <text x="157" y="106" text-anchor="middle">群 G</text>
+          <circle cx="105" cy="156" r="12" fill="#00a7ff"/>
+          <circle cx="157" cy="156" r="12" fill="#6c7cff"/>
+          <circle cx="209" cy="156" r="12" fill="#19d5bd"/>
+          <path d="M292 145 C380 86, 450 86, 538 145" fill="none" stroke="#6c7cff" stroke-width="4"/>
+          <polygon points="538,145 520,135 522,155" fill="#6c7cff"/>
+          <text x="416" y="104" text-anchor="middle">同态 φ</text>
+          <rect x="590" y="48" width="288" height="190" rx="24" fill="#f5f4ff" stroke="#6c7cff"/>
+          <text x="734" y="94" text-anchor="middle">Perm(S)</text>
+          <circle cx="686" cy="156" r="14" fill="#ffffff" stroke="#00a7ff"/>
+          <circle cx="734" cy="138" r="14" fill="#ffffff" stroke="#19d5bd"/>
+          <circle cx="782" cy="166" r="14" fill="#ffffff" stroke="#6c7cff"/>
+          <path d="M686 156 C716 112, 760 112, 782 166" fill="none" stroke="#00a7ff" stroke-width="3"/>
+          <path d="M782 166 C750 206, 708 198, 686 156" fill="none" stroke="#19d5bd" stroke-width="3"/>
+          <text x="460" y="266" text-anchor="middle">群元素变成集合上的可逆运动</text>
+        </svg>
+        <figcaption>群作用的核心图像：\(G\) 中的乘法被翻译为 \(S\) 上置换的复合。</figcaption>
+      </figure>
+
+      <h2>置换群 \(\operatorname{Perm}(S)\)</h2>
+      <p>定义：令 \(S\) 是一个集合，\(S\) 上的置换群记作 \((\operatorname{Perm}(S),\circ)\)，其中</p>
+      <p>\[
+        \operatorname{Perm}(S)=\{f:S\to S\mid f\text{ 是双射}\}.
+      \]</p>
+      <p>运算 \(\circ\) 是映射复合。</p>
+      <p>命题：\((\operatorname{Perm}(S),\circ)\) 是一个群。</p>
+      <p>证明：首先，若 \(f,g:S\to S\) 都是双射，则 \(f\circ g\) 仍是双射，所以复合运算封闭。结合律来自映射复合的结合律，即对任意 \(f,g,h\in\operatorname{Perm}(S)\)，有</p>
+      <p>\[
+        (f\circ g)\circ h=f\circ(g\circ h).
+      \]</p>
+      <p>单位元是恒等映射 \(\operatorname{id}_S\)，因为</p>
+      <p>\[
+        f\circ \operatorname{id}_S=f,\qquad \operatorname{id}_S\circ f=f.
+      \]</p>
+      <p>最后，因为 \(f\) 是双射，所以存在逆映射 \(f^{-1}:S\to S\)，并且</p>
+      <p>\[
+        f\circ f^{-1}=\operatorname{id}_S,\qquad f^{-1}\circ f=\operatorname{id}_S.
+      \]</p>
+      <p>因此 \(\operatorname{Perm}(S)\) 满足群的四条公理。</p>
+
+      <h2>从左乘作用引出群作用</h2>
+      <p>令 \((G,\cdot)\) 是一个群。对 \(x\in G\)，定义</p>
+      <p>\[
+        L_x:G\to G,\qquad L_x(g)=xg.
+      \]</p>
+      <p>命题：每个 \(L_x\) 都是 \(G\) 到自身的双射。</p>
+      <p>证明：定义 \(L_{x^{-1}}(g)=x^{-1}g\)。对任意 \(g\in G\)，有</p>
+      <p>\[
+        L_{x^{-1}}(L_x(g))=x^{-1}(xg)=(x^{-1}x)g=g,
+      \]</p>
+      <p>并且</p>
+      <p>\[
+        L_x(L_{x^{-1}}(g))=x(x^{-1}g)=(xx^{-1})g=g.
+      \]</p>
+      <p>所以 \(L_{x^{-1}}\) 是 \(L_x\) 的逆映射，\(L_x\) 是双射，因而 \(L_x\in\operatorname{Perm}(G)\)。</p>
+      <p>现在定义</p>
+      <p>\[
+        L:G\to\operatorname{Perm}(G),\qquad L(x)=L_x.
+      \]</p>
+      <p>命题：\(L\) 是群同态。</p>
+      <p>证明：对任意 \(x,y,z\in G\)，有</p>
+      <p>\[
+        L_{xy}(z)=(xy)z=x(yz)=L_x(L_y(z))=(L_x\circ L_y)(z).
+      \]</p>
+      <p>因为这对所有 \(z\in G\) 成立，所以</p>
+      <p>\[
+        L_{xy}=L_x\circ L_y.
+      \]</p>
+      <p>这正是 \(L(xy)=L(x)\circ L(y)\)，所以 \(L\) 是群同态。由同态性质也立刻得到 \(L_{x^{-1}}=L_x^{-1}\)。</p>
+      <p>这个例子很重要：它说明每个群都可以通过左乘作用嵌入到某个置换群中。进一步说，若 \(L_x=\operatorname{id}_G\)，则 \(x=L_x(e)=e\)，所以核是平凡的；这就是 Cayley 定理的基本思想。</p>
+
+      <h2>群作用的定义与图片命题</h2>
+      <p>定义：令 \(G\) 是群，\(S\) 是集合。如果</p>
+      <p>\[
+        \phi:G\to\operatorname{Perm}(S)
+      \]</p>
+      <p>是一个群同态，则称 \(\phi\) 是 \(G\) 在 \(S\) 上的一个群作用。</p>
+      <p>从末尾图片中提取出的命题可以整理如下。</p>
+      <p>命题：若 \(\phi:(G,\cdot)\to(\operatorname{Perm}(S),\circ)\) 是一个群作用，记</p>
+      <p>\[
+        x\cdot s=\phi(x)(s),
+      \]</p>
+      <p>则对任意 \(s\in S\)、\(x,y\in G\)，有</p>
+      <p>\[
+        e\cdot s=s,
+      \]</p>
+      <p>\[
+        x\cdot(y\cdot s)=(xy)\cdot s.
+      \]</p>
+      <p>在不引起歧义时，也常简写为</p>
+      <p>\[
+        es=s,\qquad x(ys)=(xy)s.
+      \]</p>
+      <p>反过来，如果一个规则 \(G\times S\to S\)、\((x,s)\mapsto x\cdot s\) 满足以上两条性质，那么它也定义了一个群作用。</p>
+      <p>证明：先从同态定义推出点号定义。因为 \(\phi\) 是同态，所以</p>
+      <p>\[
+        \phi(e)=\operatorname{id}_S.
+      \]</p>
+      <p>于是 \(e\cdot s=\phi(e)(s)=\operatorname{id}_S(s)=s\)。另一方面，</p>
+      <p>\[
+        x\cdot(y\cdot s)=\phi(x)(\phi(y)(s))=(\phi(x)\circ\phi(y))(s)=\phi(xy)(s)=(xy)\cdot s.
+      \]</p>
+      <p>再证反方向。假设 \(e\cdot s=s\) 且 \(x\cdot(y\cdot s)=(xy)\cdot s\)。对每个 \(x\in G\)，定义</p>
+      <p>\[
+        \phi(x):S\to S,\qquad \phi(x)(s)=x\cdot s.
+      \]</p>
+      <p>我们先证明 \(\phi(x)\) 是双射。由第二条性质，</p>
+      <p>\[
+        \phi(x^{-1})(\phi(x)(s))=x^{-1}\cdot(x\cdot s)=(x^{-1}x)\cdot s=e\cdot s=s,
+      \]</p>
+      <p>同理</p>
+      <p>\[
+        \phi(x)(\phi(x^{-1})(s))=s.
+      \]</p>
+      <p>所以 \(\phi(x^{-1})\) 是 \(\phi(x)\) 的逆映射，\(\phi(x)\in\operatorname{Perm}(S)\)。最后，对任意 \(s\in S\)，</p>
+      <p>\[
+        \phi(xy)(s)=(xy)\cdot s=x\cdot(y\cdot s)=\phi(x)(\phi(y)(s))=(\phi(x)\circ\phi(y))(s).
+      \]</p>
+      <p>因此 \(\phi(xy)=\phi(x)\circ\phi(y)\)，\(\phi\) 是群同态。</p>
+
+      <h2>轨道与稳定子</h2>
+      <p>群作用最自然的两个对象是轨道和稳定子。设 \(G\) 作用在 \(S\) 上，\(s\in S\)。定义</p>
+      <p>\[
+        \operatorname{Orb}(s)=G\cdot s=\{x\cdot s:x\in G\},
+      \]</p>
+      <p>称为 \(s\) 的轨道；定义</p>
+      <p>\[
+        \operatorname{Stab}(s)=G_s=\{x\in G:x\cdot s=s\},
+      \]</p>
+      <p>称为 \(s\) 的稳定子。</p>
+
+      <figure class="math-figure">
+        <svg viewBox="0 0 920 300" role="img" aria-label="轨道和稳定子的示意图">
+          <rect x="46" y="42" width="350" height="210" rx="24" fill="#eef9ff" stroke="#00a7ff"/>
+          <text x="221" y="82" text-anchor="middle">集合 S 中的轨道</text>
+          <circle cx="155" cy="150" r="15" fill="#00a7ff"/>
+          <circle cx="220" cy="118" r="15" fill="#19d5bd"/>
+          <circle cx="284" cy="165" r="15" fill="#6c7cff"/>
+          <circle cx="210" cy="195" r="15" fill="#f59e42"/>
+          <path d="M155 150 C178 116, 194 108, 220 118" fill="none" stroke="#00a7ff" stroke-width="3"/>
+          <path d="M220 118 C266 116, 294 134, 284 165" fill="none" stroke="#6c7cff" stroke-width="3"/>
+          <path d="M284 165 C262 202, 230 214, 210 195" fill="none" stroke="#19d5bd" stroke-width="3"/>
+          <path d="M210 195 C168 198, 138 178, 155 150" fill="none" stroke="#f59e42" stroke-width="3"/>
+          <rect x="525" y="58" width="310" height="178" rx="24" fill="#f7f5ff" stroke="#6c7cff"/>
+          <text x="680" y="98" text-anchor="middle">稳定子 G_s</text>
+          <circle cx="680" cy="154" r="38" fill="#ffffff" stroke="#6c7cff" stroke-width="3"/>
+          <text x="680" y="162" text-anchor="middle">s 不动</text>
+          <text x="460" y="276" text-anchor="middle">轨道看“能到哪里”，稳定子看“哪些运动不改变它”</text>
+        </svg>
+        <figcaption>轨道描述一个点在群作用下能跑到哪些位置；稳定子描述哪些群元素会把这个点固定住。</figcaption>
+      </figure>
+
+      <p>命题：\(\operatorname{Stab}(s)\) 是 \(G\) 的子群。</p>
+      <p>证明：首先 \(e\cdot s=s\)，所以 \(e\in\operatorname{Stab}(s)\)。若 \(x,y\in\operatorname{Stab}(s)\)，则 \(x\cdot s=s\)、\(y\cdot s=s\)。于是</p>
+      <p>\[
+        (xy^{-1})\cdot s=x\cdot(y^{-1}\cdot s).
+      \]</p>
+      <p>因为 \(y\cdot s=s\)，两边作用 \(y^{-1}\)，得到</p>
+      <p>\[
+        y^{-1}\cdot(y\cdot s)=y^{-1}\cdot s,
+      \]</p>
+      <p>左边等于 \((y^{-1}y)\cdot s=e\cdot s=s\)，所以 \(y^{-1}\cdot s=s\)。因此</p>
+      <p>\[
+        (xy^{-1})\cdot s=x\cdot s=s.
+      \]</p>
+      <p>这说明 \(xy^{-1}\in\operatorname{Stab}(s)\)。由子群判别法，\(\operatorname{Stab}(s)&lt;G\)。</p>
+      <p>命题：轨道给出 \(S\) 的一个划分。</p>
+      <p>证明：定义关系 \(s\sim t\) 当且仅当存在 \(x\in G\)，使 \(t=x\cdot s\)。反身性来自 \(s=e\cdot s\)。若 \(t=x\cdot s\)，则</p>
+      <p>\[
+        s=x^{-1}\cdot t,
+      \]</p>
+      <p>所以对称性成立。若 \(t=x\cdot s\)、\(u=y\cdot t\)，则</p>
+      <p>\[
+        u=y\cdot(x\cdot s)=(yx)\cdot s,
+      \]</p>
+      <p>所以传递性成立。因此 \(\sim\) 是等价关系，而等价类正是轨道，所以轨道把 \(S\) 分拆成互不相交的块。</p>
+      <p>定理：若 \(G\) 是有限群，则</p>
+      <p>\[
+        |\operatorname{Orb}(s)|=[G:\operatorname{Stab}(s)].
+      \]</p>
+      <p>特别地，</p>
+      <p>\[
+        |\operatorname{Orb}(s)|=\frac{|G|}{|\operatorname{Stab}(s)|}.
+      \]</p>
+      <p>证明：构造映射</p>
+      <p>\[
+        \Theta:G/\operatorname{Stab}(s)\to\operatorname{Orb}(s),\qquad
+        \Theta(x\operatorname{Stab}(s))=x\cdot s.
+      \]</p>
+      <p>先证良定义。若 \(xG_s=yG_s\)，则 \(y^{-1}x\in G_s\)，所以 \((y^{-1}x)\cdot s=s\)。两边作用 \(y\)，得到</p>
+      <p>\[
+        x\cdot s=y\cdot s.
+      \]</p>
+      <p>因此代表元选择不影响结果。映射 \(\Theta\) 显然满射，因为轨道中每个元素都形如 \(x\cdot s\)。再证单射：若 \(\Theta(xG_s)=\Theta(yG_s)\)，即 \(x\cdot s=y\cdot s\)，则</p>
+      <p>\[
+        (y^{-1}x)\cdot s=s,
+      \]</p>
+      <p>所以 \(y^{-1}x\in G_s\)，即 \(xG_s=yG_s\)。因此 \(\Theta\) 是双射，结论成立。</p>
+
+      <h2>共轭作用</h2>
+      <p>定义：令 \(G\) 是群。对 \(x\in G\)，定义</p>
+      <p>\[
+        C_x:G\to G,\qquad C_x(y)=xyx^{-1}.
+      \]</p>
+      <p>这称为由 \(x\) 引出的共轭变换。把 \(x\) 送到 \(C_x\)，得到</p>
+      <p>\[
+        C:G\to\operatorname{Perm}(G),\qquad C(x)=C_x.
+      \]</p>
+      <p>命题：共轭变换 \(C_x\) 是 \(G\) 的自同构。</p>
+      <p>证明：先证它是同态。任取 \(y,z\in G\)，有</p>
+      <p>\[
+        C_x(yz)=x(yz)x^{-1}=(xyx^{-1})(xzx^{-1})=C_x(y)C_x(z).
+      \]</p>
+      <p>再证它是双射。事实上 \(C_{x^{-1}}\) 是 \(C_x\) 的逆映射，因为</p>
+      <p>\[
+        C_{x^{-1}}(C_x(y))=x^{-1}(xyx^{-1})x=y,
+      \]</p>
+      <p>\[
+        C_x(C_{x^{-1}}(y))=x(x^{-1}yx)x^{-1}=y.
+      \]</p>
+      <p>所以 \(C_x\) 是双射同态，即自同构。</p>
+      <p>命题：共轭作用确实是一个群作用。</p>
+      <p>证明：由上一个命题，\(C_x\in\operatorname{Perm}(G)\)。对任意 \(x,y,z\in G\)，</p>
+      <p>\[
+        C_{xy}(z)=(xy)z(xy)^{-1}=xyzy^{-1}x^{-1}=C_x(C_y(z)).
+      \]</p>
+      <p>所以 \(C_{xy}=C_x\circ C_y\)，即 \(C:G\to\operatorname{Perm}(G)\) 是同态。因此共轭定义了 \(G\) 在自身上的群作用。</p>
+
+      <figure class="math-figure">
+        <svg viewBox="0 0 920 300" role="img" aria-label="共轭作用揭示群的内部结构">
+          <rect x="48" y="50" width="300" height="190" rx="24" fill="#eef9ff" stroke="#00a7ff"/>
+          <text x="198" y="92" text-anchor="middle">左乘作用</text>
+          <path d="M120 166 H270" stroke="#00a7ff" stroke-width="7"/>
+          <polygon points="270,166 248,153 248,179" fill="#00a7ff"/>
+          <text x="198" y="216" text-anchor="middle">整体平移</text>
+          <rect x="570" y="50" width="300" height="190" rx="24" fill="#f5f4ff" stroke="#6c7cff"/>
+          <text x="720" y="92" text-anchor="middle">共轭作用</text>
+          <circle cx="720" cy="158" r="58" fill="#ffffff" stroke="#6c7cff" stroke-width="3"/>
+          <path d="M690 158 C700 126, 748 126, 758 158 C748 190, 700 190, 690 158" fill="none" stroke="#19d5bd" stroke-width="4"/>
+          <text x="720" y="216" text-anchor="middle">内部坐标变换</text>
+          <text x="460" y="272" text-anchor="middle">共轭比左乘更能揭示中心、正规子群和共轭类</text>
+        </svg>
+        <figcaption>左乘作用把群看作“可平移的空间”；共轭作用则把群看作“会改变内部坐标的结构”。</figcaption>
+      </figure>
+
+      <h2>为什么说共轭作用比左乘作用更有结构感</h2>
+      <p>左乘作用非常强，因为它告诉我们每个群都能表现为置换群；但它主要记录“群作为集合如何被自己平移”。这种作用的稳定子是平凡的，轨道只有一个，因此它不太区分群内部哪些元素更特殊。</p>
+      <p>共轭作用则不同。它的轨道是共轭类，稳定子是中心化子：</p>
+      <p>\[
+        \operatorname{Orb}(a)=\{xax^{-1}:x\in G\},
+      \]</p>
+      <p>\[
+        \operatorname{Stab}(a)=C_G(a)=\{x\in G:xa=ax\}.
+      \]</p>
+      <p>证明稳定子公式：\(x\in\operatorname{Stab}(a)\) 当且仅当 \(xax^{-1}=a\)。右乘 \(x\)，得到 \(xa=ax\)。反过来也显然成立。</p>
+      <p>共轭类告诉我们哪些元素在群的内部对称性下“本质相同”；中心化子告诉我们哪些元素与 \(a\) 相容。正规子群也可以用共轭作用理解：\(N\lhd G\) 当且仅当 \(N\) 在共轭作用下保持不变，即对任意 \(x\in G\)，都有 \(xNx^{-1}=N\)。</p>
+
+      <h2>内自同构与外自同构</h2>
+      <p>由某个 \(x\in G\) 引出的自同构</p>
+      <p>\[
+        C_x(y)=xyx^{-1}
+      \]</p>
+      <p>称为内自同构。所有内自同构构成 \(\operatorname{Aut}(G)\) 的一个子群，记作 \(\operatorname{Inn}(G)\)。</p>
+      <p>命题：映射</p>
+      <p>\[
+        C:G\to\operatorname{Aut}(G),\qquad x\mapsto C_x
+      \]</p>
+      <p>是群同态，且</p>
+      <p>\[
+        \ker(C)=Z(G),
+      \]</p>
+      <p>其中 \(Z(G)=\{z\in G:zg=gz,\ \forall g\in G\}\) 是中心。</p>
+      <p>证明：同态性已经在共轭作用中证明。现在计算核。\(x\in\ker(C)\) 当且仅当 \(C_x=\operatorname{id}_G\)，也就是对任意 \(y\in G\)，都有</p>
+      <p>\[
+        xyx^{-1}=y.
+      \]</p>
+      <p>右乘 \(x\)，得到 \(xy=yx\)。这对所有 \(y\in G\) 成立，所以 \(x\in Z(G)\)。反过来，若 \(x\in Z(G)\)，则 \(xy=yx\)，所以 \(xyx^{-1}=y\)，即 \(C_x=\operatorname{id}_G\)。因此 \(\ker(C)=Z(G)\)。</p>
+      <p>由第一同构定理，</p>
+      <p>\[
+        \operatorname{Inn}(G)\cong G/Z(G).
+      \]</p>
+      <p>那些不是内自同构的自同构，可以称为外自同构。更准确地说，外自同构群通常定义为</p>
+      <p>\[
+        \operatorname{Out}(G)=\operatorname{Aut}(G)/\operatorname{Inn}(G).
+      \]</p>
+      <p>这里 \(\operatorname{Inn}(G)\lhd\operatorname{Aut}(G)\)。证明也很短：若 \(\alpha\in\operatorname{Aut}(G)\)，则</p>
+      <p>\[
+        \alpha C_x\alpha^{-1}=C_{\alpha(x)}.
+      \]</p>
+      <p>因为对任意 \(y\in G\)，</p>
+      <p>\[
+        \alpha(C_x(\alpha^{-1}(y)))=\alpha(x\alpha^{-1}(y)x^{-1})=\alpha(x)y\alpha(x)^{-1}.
+      \]</p>
+      <p>所以内自同构在 \(\operatorname{Aut}(G)\) 的共轭下仍是内自同构，\(\operatorname{Inn}(G)\) 正规。</p>
+
+      <h2>应用一：类方程</h2>
+      <p>设 \(G\) 是有限群，让 \(G\) 在自身上共轭作用。每个元素的轨道是它的共轭类，稳定子是中心化子。由轨道稳定子定理，</p>
+      <p>\[
+        |\operatorname{Cl}(a)|=[G:C_G(a)].
+      \]</p>
+      <p>特别地，若 \(a\in Z(G)\)，则 \(xax^{-1}=a\) 对所有 \(x\in G\) 成立，所以 \(a\) 的共轭类只有一个元素。</p>
+      <p>把 \(G\) 按共轭类划分，得到类方程：</p>
+      <p>\[
+        |G|=|Z(G)|+\sum_i [G:C_G(a_i)],
+      \]</p>
+      <p>其中 \(a_i\) 从非中心元素的不同共轭类中各取一个代表。</p>
+      <p>这个公式是群作用的典型威力：它把一个群的整体大小，拆成“完全不动的中心部分”和“真正会被共轭移动的部分”。在研究 \(p\)-群中心非平凡、有限群分类的早期结论时，它非常常用。</p>
+
+      <h2>应用二：Burnside 引理</h2>
+      <p>群作用也可以用来做计数。设有限群 \(G\) 作用在有限集合 \(S\) 上。记</p>
+      <p>\[
+        \operatorname{Fix}(x)=\{s\in S:x\cdot s=s\}.
+      \]</p>
+      <p>Burnside 引理：轨道个数为</p>
+      <p>\[
+        |S/G|=\frac{1}{|G|}\sum_{x\in G}|\operatorname{Fix}(x)|.
+      \]</p>
+      <p>证明：考虑集合</p>
+      <p>\[
+        A=\{(x,s)\in G\times S:x\cdot s=s\}.
+      \]</p>
+      <p>一方面，先固定 \(x\)，满足条件的 \(s\) 有 \(|\operatorname{Fix}(x)|\) 个，所以</p>
+      <p>\[
+        |A|=\sum_{x\in G}|\operatorname{Fix}(x)|.
+      \]</p>
+      <p>另一方面，先固定 \(s\)，满足 \(x\cdot s=s\) 的 \(x\) 正是 \(\operatorname{Stab}(s)\)，所以</p>
+      <p>\[
+        |A|=\sum_{s\in S}|\operatorname{Stab}(s)|.
+      \]</p>
+      <p>把 \(S\) 按轨道分组。若某个轨道代表为 \(s_0\)，轨道中每个点的稳定子大小都与 \(\operatorname{Stab}(s_0)\) 相同；并且</p>
+      <p>\[
+        |\operatorname{Orb}(s_0)|\cdot|\operatorname{Stab}(s_0)|=|G|.
+      \]</p>
+      <p>所以每个轨道对总和 \(\sum_{s\in S}|\operatorname{Stab}(s)|\) 的贡献都是 \(|G|\)。若轨道个数为 \(|S/G|\)，则</p>
+      <p>\[
+        |A|=|S/G|\cdot |G|.
+      \]</p>
+      <p>两种计数方式相等，得到</p>
+      <p>\[
+        |S/G|=\frac{1}{|G|}\sum_{x\in G}|\operatorname{Fix}(x)|.
+      \]</p>
+      <p>应用场景很多：计算项链、手镯、魔方染色、图的非同构染色，本质上都是“把对称变换看作同一种方案”。</p>
+
+      <h2>小结</h2>
+      <p>群作用提供了一种非常统一的语言：左乘作用说明每个群都能表现为置换群；一般群作用把同态定义翻译成 \(e\cdot s=s\) 与 \(x\cdot(y\cdot s)=(xy)\cdot s\)；轨道与稳定子把运动和不动联系起来；共轭作用则把中心、正规子群、共轭类、内自同构和类方程统一在同一个框架中。</p>
+      <p>从学习路径看，群作用是一个转折点：在它之前，我们更多是在研究群本身；在它之后，我们开始研究群如何控制别的对象，以及对称性如何真正参与证明和计数。</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+    <script src="../assets/js/site-insights.js?v=insights-20260617" defer></script>
+    <script src="../assets/js/site-effects.js?v=effects-20260617" defer></script>
+  </body>
+</html>

@@ -10,6 +10,14 @@
       "readingMinutes": 5
     },
     {
+      "title": "群作用",
+      "url": "posts/group-actions.html",
+      "date": "2026-06-19",
+      "category": "抽象代数",
+      "words": 3258,
+      "readingMinutes": 8
+    },
+    {
       "title": "正规子群",
       "url": "posts/normal-subgroups.html",
       "date": "2026-06-18",

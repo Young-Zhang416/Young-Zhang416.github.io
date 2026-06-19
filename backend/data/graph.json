@@ -64,6 +64,27 @@
       "tags": ["math", "theorem"]
     },
     {
+      "id": "group-action",
+      "label": "群作用",
+      "kind": "concept",
+      "description": "把群元素解释为集合上的可逆运动，是研究对称性与计数的基本语言。",
+      "tags": ["math", "action"]
+    },
+    {
+      "id": "orbit-stabilizer",
+      "label": "轨道稳定子",
+      "kind": "concept",
+      "description": "用轨道与稳定子刻画群作用中“能到哪里”和“哪些元素不动”。",
+      "tags": ["math", "theorem"]
+    },
+    {
+      "id": "conjugation-action",
+      "label": "共轭作用",
+      "kind": "concept",
+      "description": "群在自身上的共轭运动，用来理解中心、共轭类和正规子群。",
+      "tags": ["math", "action"]
+    },
+    {
       "id": "res-subgroups",
       "label": "子群、群同态与同构",
       "kind": "resource",
@@ -102,6 +123,14 @@
       "url": "posts/group-isomorphism-theorems.html",
       "description": "博客文章：三大同构定理的直观解释、完整证明和示意图。",
       "tags": ["html", "article"]
+    },
+    {
+      "id": "res-group-actions",
+      "label": "群作用",
+      "kind": "resource",
+      "url": "posts/group-actions.html",
+      "description": "博客文章：群作用、轨道稳定子、共轭作用、类方程和 Burnside 引理。",
+      "tags": ["html", "article"]
     }
   ],
   "links": [
@@ -109,14 +138,19 @@
     { "source": "group-theory", "target": "homomorphism", "label": "maps" },
     { "source": "group-theory", "target": "cyclic-group", "label": "special case" },
     { "source": "group-theory", "target": "coset", "label": "partitions" },
+    { "source": "group-theory", "target": "group-action", "label": "acts" },
     { "source": "coset", "target": "lagrange-theorem", "label": "proves" },
     { "source": "coset", "target": "normal-subgroup", "label": "balances" },
     { "source": "normal-subgroup", "target": "quotient-group", "label": "forms" },
     { "source": "quotient-group", "target": "isomorphism-theorems", "label": "organizes" },
+    { "source": "group-action", "target": "orbit-stabilizer", "label": "measures" },
+    { "source": "group-action", "target": "conjugation-action", "label": "includes" },
+    { "source": "conjugation-action", "target": "normal-subgroup", "label": "detects" },
     { "source": "homomorphism", "target": "res-subgroups", "label": "article" },
     { "source": "cyclic-group", "target": "res-cyclic", "label": "article" },
     { "source": "lagrange-theorem", "target": "res-cosets-lagrange", "label": "article" },
     { "source": "normal-subgroup", "target": "res-normal-subgroups", "label": "article" },
-    { "source": "isomorphism-theorems", "target": "res-isomorphism-theorems", "label": "article" }
+    { "source": "isomorphism-theorems", "target": "res-isomorphism-theorems", "label": "article" },
+    { "source": "group-action", "target": "res-group-actions", "label": "article" }
   ]
 }
