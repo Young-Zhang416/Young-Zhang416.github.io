@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="抽象代数笔记：轨道、稳定化子、轨道划分、稳定化子子群、关键引理、轨道-稳定化子定理及应用。">
+    <title>轨道-稳定化子定理 | Young Zhang</title>
+    <link rel="stylesheet" href="../assets/css/site.css?v=effects-20260617">
+    <script src="../assets/js/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Young Zhang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../posts.html">文章</a>
+        <a href="../knowledge.html">图谱</a>
+        <a href="../about.html">关于</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="eyebrow">抽象代数 · 2026.06.27</p>
+      <h1>轨道-稳定化子定理</h1>
+      <p class="lead">轨道-稳定化子定理把“一个点能被群带到多少地方”和“有多少群元素固定这个点”精确地乘在一起。它是群作用中最常用、也最有直觉的一条计数定理。</p>
+      <div class="article-stats" data-current-post-stats></div>
+
+      <h2>从地球自转看轨道与稳定化子</h2>
+      <p>先看一个几何图像。把地球看成球面 \(S^2\)，让绕地轴的旋转群 \(SO(2)\) 作用在球面上。每个旋转角 \(\theta\) 都把球面上的点转到另一个点。</p>
+      <p>如果点 \(p\) 不在南北极，那么它在旋转作用下会沿着一条纬度线运动；这条纬度线就是 \(p\) 的轨道。能够固定 \(p\) 的旋转只有恒等旋转，所以 \(p\) 的稳定化子很小。若 \(p\) 是北极或南极，那么任意绕地轴旋转都不改变它，所以极点的轨道只有一个点，但稳定化子是整个 \(SO(2)\)。</p>
+
+      <figure class="math-figure">
+        <svg viewBox="0 0 920 320" role="img" aria-label="地球自转中的轨道与稳定化子">
+          <rect x="38" y="34" width="844" height="252" rx="24" fill="#eef9ff" stroke="#00a7ff"/>
+          <circle cx="248" cy="160" r="104" fill="#ffffff" stroke="#00a7ff" stroke-width="3"/>
+          <ellipse cx="248" cy="160" rx="92" ry="24" fill="none" stroke="#19d5bd" stroke-width="4"/>
+          <ellipse cx="248" cy="126" rx="72" ry="18" fill="none" stroke="#6c7cff" stroke-width="3"/>
+          <line x1="248" y1="40" x2="248" y2="280" stroke="#17243f" stroke-width="3" stroke-dasharray="8 8"/>
+          <circle cx="248" cy="56" r="8" fill="#f59e42"/>
+          <circle cx="340" cy="160" r="8" fill="#19d5bd"/>
+          <path d="M438 160 C506 88, 596 88, 664 160" fill="none" stroke="#6c7cff" stroke-width="4"/>
+          <polygon points="664,160 646,150 648,170" fill="#6c7cff"/>
+          <rect x="694" y="72" width="148" height="176" rx="18" fill="#ffffff" stroke="#6c7cff"/>
+          <text x="768" y="118" text-anchor="middle">轨道</text>
+          <text x="768" y="154" text-anchor="middle">纬度线</text>
+          <text x="768" y="202" text-anchor="middle">稳定化子</text>
+          <text x="768" y="232" text-anchor="middle">固定点的旋转</text>
+        </svg>
+        <figcaption>轨道回答“点会去哪里”，稳定化子回答“哪些群元素让它不动”。两者互补，正好组成轨道-稳定化子定理。</figcaption>
+      </figure>
+
+      <h2>定义</h2>
+      <p>令 \(\phi:(G,\cdot)\to(\operatorname{Perm}(S),\circ)\) 是 \(G\) 在集合 \(S\) 上的群作用。为了书写简洁，记</p>
+      <p>\[
+        x\cdot s=\phi(x)(s).
+      \]</p>
+      <p>若 \(s\in S\)，定义 \(s\) 的轨道为</p>
+      <p>\[
+        \operatorname{Orb}(s)=\{s'\in S:\exists x\in G,\ s'=x\cdot s\}
+        =\{x\cdot s:x\in G\}.
+      \]</p>
+      <p>定义 \(s\) 的稳定化子，也常简称稳定子，为</p>
+      <p>\[
+        \operatorname{Stab}(s)=G_s=\{x\in G:x\cdot s=s\}.
+      \]</p>
+      <p>轨道是集合 \(S\) 中的一块区域，稳定化子是群 \(G\) 中的一个子集。一个在 \(S\) 里，一个在 \(G\) 里，这是初学时最容易混淆的地方。</p>
+
+      <h2>轨道要么相等，要么不相交</h2>
+      <p>命题：设 \(G\) 作用在 \(S\) 上，\(s,s'\in S\)。则 \(\operatorname{Orb}(s)\) 和 \(\operatorname{Orb}(s')\) 要么相等，要么无交。因此，\(S\) 可以写成轨道的无交并。</p>
+      <p>证明：若两个轨道有交集，取</p>
+      <p>\[
+        t\in \operatorname{Orb}(s)\cap\operatorname{Orb}(s').
+      \]</p>
+      <p>则存在 \(x,y\in G\)，使</p>
+      <p>\[
+        t=x\cdot s=y\cdot s'.
+      \]</p>
+      <p>先证 \(\operatorname{Orb}(s)\subset \operatorname{Orb}(s')\)。任取 \(o\in\operatorname{Orb}(s)\)，存在 \(z\in G\)，使 \(o=z\cdot s\)。由 \(x\cdot s=y\cdot s'\)，两边作用 \(x^{-1}\)，得到</p>
+      <p>\[
+        s=(x^{-1}y)\cdot s'.
+      \]</p>
+      <p>于是</p>
+      <p>\[
+        o=z\cdot s=z\cdot((x^{-1}y)\cdot s')=(zx^{-1}y)\cdot s'.
+      \]</p>
+      <p>因为 \(zx^{-1}y\in G\)，所以 \(o\in\operatorname{Orb}(s')\)。因此 \(\operatorname{Orb}(s)\subset \operatorname{Orb}(s')\)。</p>
+      <p>同理交换 \(s\) 和 \(s'\)，得到 \(\operatorname{Orb}(s')\subset \operatorname{Orb}(s)\)。所以两个轨道相等。</p>
+      <p>因此，如果两个轨道不是相等的，就不可能有交点。又因为每个 \(s\in S\) 都属于自己的轨道 \(\operatorname{Orb}(s)\)，所以所有轨道构成 \(S\) 的无交分解。</p>
+
+      <h2>稳定化子是子群</h2>
+      <p>命题：对任意 \(s\in S\)，有</p>
+      <p>\[
+        \operatorname{Stab}(s)&lt;G.
+      \]</p>
+      <p>证明：使用子群判别法。首先，群作用满足 \(e\cdot s=s\)，所以</p>
+      <p>\[
+        e\in\operatorname{Stab}(s).
+      \]</p>
+      <p>其次，若 \(x\in\operatorname{Stab}(s)\)，则 \(x\cdot s=s\)。两边作用 \(x^{-1}\)，得到</p>
+      <p>\[
+        x^{-1}\cdot(x\cdot s)=x^{-1}\cdot s.
+      \]</p>
+      <p>左边等于 \((x^{-1}x)\cdot s=e\cdot s=s\)，所以</p>
+      <p>\[
+        x^{-1}\cdot s=s.
+      \]</p>
+      <p>因此 \(x^{-1}\in\operatorname{Stab}(s)\)。</p>
+      <p>最后，若 \(x,y\in\operatorname{Stab}(s)\)，则 \(y^{-1}\in\operatorname{Stab}(s)\)，所以 \(y^{-1}\cdot s=s\)。于是</p>
+      <p>\[
+        (xy^{-1})\cdot s=x\cdot(y^{-1}\cdot s)=x\cdot s=s.
+      \]</p>
+      <p>所以 \(xy^{-1}\in\operatorname{Stab}(s)\)。由子群判别法，\(\operatorname{Stab}(s)&lt;G\)。</p>
+      <p>注意：稳定化子一般不是正规子群。例如 \(S_3\) 自然作用在集合 \(\{1,2,3\}\) 上。点 \(1\) 的稳定化子是</p>
+      <p>\[
+        \operatorname{Stab}(1)=\{e,(23)\}.
+      \]</p>
+      <p>但</p>
+      <p>\[
+        (12)(23)(12)^{-1}=(13)\notin \{e,(23)\}.
+      \]</p>
+      <p>所以 \(\operatorname{Stab}(1)\) 不是 \(S_3\) 的正规子群。这也提醒我们：轨道-稳定化子定理里的 \(G/\operatorname{Stab}(s)\) 通常只是左陪集集合，不一定是商群。</p>
+
+      <h2>关键引理</h2>
+      <p>引理：设 \(G\) 作用在 \(S\) 上，\(s\in S\)，\(x,y\in G\)。则</p>
+      <p>\[
+        x\cdot s=y\cdot s
+        \iff
+        x^{-1}y\in\operatorname{Stab}(s).
+      \]</p>
+      <p>证明：先证左推右。若 \(x\cdot s=y\cdot s\)，两边作用 \(x^{-1}\)，得到</p>
+      <p>\[
+        x^{-1}\cdot(x\cdot s)=x^{-1}\cdot(y\cdot s).
+      \]</p>
+      <p>左边是 \(s\)，右边是 \((x^{-1}y)\cdot s\)，所以</p>
+      <p>\[
+        (x^{-1}y)\cdot s=s.
+      \]</p>
+      <p>因此 \(x^{-1}y\in\operatorname{Stab}(s)\)。</p>
+      <p>再证右推左。若 \(x^{-1}y\in\operatorname{Stab}(s)\)，则</p>
+      <p>\[
+        (x^{-1}y)\cdot s=s.
+      \]</p>
+      <p>两边作用 \(x\)，得到</p>
+      <p>\[
+        x\cdot((x^{-1}y)\cdot s)=x\cdot s.
+      \]</p>
+      <p>左边等于 \((xx^{-1}y)\cdot s=y\cdot s\)，所以 \(y\cdot s=x\cdot s\)。引理成立。</p>
+
+      <h2>轨道-稳定化子定理</h2>
+      <p>定理：设 \(G\) 作用在 \(S\) 上，\(s\in S\)。则左陪集集合 \(G/\operatorname{Stab}(s)\) 与轨道 \(\operatorname{Orb}(s)\) 之间存在自然双射。特别地，若 \(G\) 有限，则</p>
+      <p>\[
+        |G|=|\operatorname{Stab}(s)|\cdot|\operatorname{Orb}(s)|.
+      \]</p>
+      <p>等价地，</p>
+      <p>\[
+        |\operatorname{Orb}(s)|=[G:\operatorname{Stab}(s)].
+      \]</p>
+      <p>证明：定义映射</p>
+      <p>\[
+        F:G/\operatorname{Stab}(s)\to\operatorname{Orb}(s),
+        \qquad
+        F(x\operatorname{Stab}(s))=x\cdot s.
+      \]</p>
+      <p>第一步，证明 \(F\) 良定义。若</p>
+      <p>\[
+        x\operatorname{Stab}(s)=y\operatorname{Stab}(s),
+      \]</p>
+      <p>则左陪集相等判别给出</p>
+      <p>\[
+        x^{-1}y\in\operatorname{Stab}(s).
+      \]</p>
+      <p>由关键引理，\(x\cdot s=y\cdot s\)。因此同一个陪集的不同代表元给出同一个轨道点，映射良定义。</p>
+      <p>第二步，证明 \(F\) 满射。任取 \(o\in\operatorname{Orb}(s)\)，由轨道定义，存在 \(x\in G\)，使</p>
+      <p>\[
+        o=x\cdot s=F(x\operatorname{Stab}(s)).
+      \]</p>
+      <p>所以 \(F\) 满射。</p>
+      <p>第三步，证明 \(F\) 单射。若</p>
+      <p>\[
+        F(x\operatorname{Stab}(s))=F(y\operatorname{Stab}(s)),
+      \]</p>
+      <p>即 \(x\cdot s=y\cdot s\)，由关键引理，</p>
+      <p>\[
+        x^{-1}y\in\operatorname{Stab}(s).
+      \]</p>
+      <p>于是 \(x\operatorname{Stab}(s)=y\operatorname{Stab}(s)\)。因此 \(F\) 单射。</p>
+      <p>综上，\(F\) 是双射。若 \(G\) 有限，则左陪集个数为指数 \([G:\operatorname{Stab}(s)]\)，由拉格朗日定理，</p>
+      <p>\[
+        [G:\operatorname{Stab}(s)]
+        =
+        \frac{|G|}{|\operatorname{Stab}(s)|}.
+      \]</p>
+      <p>又因为 \(\operatorname{Orb}(s)\) 与左陪集集合双射，所以</p>
+      <p>\[
+        |\operatorname{Orb}(s)|
+        =
+        \frac{|G|}{|\operatorname{Stab}(s)|},
+      \]</p>
+      <p>即</p>
+      <p>\[
+        |G|=|\operatorname{Stab}(s)|\cdot|\operatorname{Orb}(s)|.
+      \]</p>
+
+      <figure class="math-figure">
+        <svg viewBox="0 0 920 320" role="img" aria-label="陪集到轨道的双射">
+          <rect x="44" y="46" width="300" height="220" rx="22" fill="#f5f4ff" stroke="#6c7cff"/>
+          <text x="194" y="86" text-anchor="middle">G/Stab(s)</text>
+          <rect x="92" y="116" width="210" height="34" rx="8" fill="#ffffff" stroke="#6c7cff"/>
+          <rect x="92" y="162" width="210" height="34" rx="8" fill="#ffffff" stroke="#6c7cff"/>
+          <rect x="92" y="208" width="210" height="34" rx="8" fill="#ffffff" stroke="#6c7cff"/>
+          <text x="197" y="139" text-anchor="middle">x Stab(s)</text>
+          <text x="197" y="185" text-anchor="middle">y Stab(s)</text>
+          <text x="197" y="231" text-anchor="middle">z Stab(s)</text>
+          <path d="M370 160 C430 106, 492 106, 552 160" fill="none" stroke="#00a7ff" stroke-width="4"/>
+          <polygon points="552,160 534,150 536,170" fill="#00a7ff"/>
+          <text x="461" y="112" text-anchor="middle">F(xStab(s)) = x·s</text>
+          <rect x="590" y="46" width="286" height="220" rx="22" fill="#eef9ff" stroke="#00a7ff"/>
+          <text x="733" y="86" text-anchor="middle">Orb(s)</text>
+          <circle cx="682" cy="148" r="14" fill="#00a7ff"/>
+          <circle cx="738" cy="128" r="14" fill="#19d5bd"/>
+          <circle cx="790" cy="174" r="14" fill="#6c7cff"/>
+          <circle cx="716" cy="208" r="14" fill="#f59e42"/>
+          <path d="M682 148 C712 112, 750 112, 738 128" fill="none" stroke="#00a7ff" stroke-width="3"/>
+          <path d="M738 128 C792 124, 814 150, 790 174" fill="none" stroke="#19d5bd" stroke-width="3"/>
+          <path d="M790 174 C762 216, 728 226, 716 208" fill="none" stroke="#6c7cff" stroke-width="3"/>
+          <path d="M716 208 C668 200, 650 166, 682 148" fill="none" stroke="#f59e42" stroke-width="3"/>
+        </svg>
+        <figcaption>一个陪集对应轨道中的一个点；稳定化子正是“代表元选择的冗余”。</figcaption>
+      </figure>
+
+      <h2>应用一：正多边形的顶点对称</h2>
+      <p>令 \(D_n\) 是正 \(n\) 边形的二面体群，\(|D_n|=2n\)。让 \(D_n\) 作用在顶点集合 \(V\) 上。任取一个顶点 \(v\)，它的轨道是所有顶点，因为旋转就能把 \(v\) 送到任意顶点，所以</p>
+      <p>\[
+        |\operatorname{Orb}(v)|=n.
+      \]</p>
+      <p>由轨道-稳定化子定理，</p>
+      <p>\[
+        |\operatorname{Stab}(v)|=\frac{|D_n|}{|\operatorname{Orb}(v)|}
+        =\frac{2n}{n}=2.
+      \]</p>
+      <p>几何上，这两个元素是恒等变换和经过顶点 \(v\) 的那条对称轴反射。这个例子说明：如果轨道很大，稳定化子就小；点越“容易被移走”，固定它的对称性越少。</p>
+
+      <h2>应用二：共轭类与类方程</h2>
+      <p>令有限群 \(G\) 通过共轭作用作用在自身上：</p>
+      <p>\[
+        x\cdot a=xax^{-1}.
+      \]</p>
+      <p>此时 \(a\) 的轨道是共轭类</p>
+      <p>\[
+        \operatorname{Cl}(a)=\{xax^{-1}:x\in G\},
+      \]</p>
+      <p>而 \(a\) 的稳定化子是中心化子</p>
+      <p>\[
+        C_G(a)=\{x\in G:xa=ax\}.
+      \]</p>
+      <p>证明稳定化子等于中心化子：\(x\in\operatorname{Stab}(a)\) 当且仅当</p>
+      <p>\[
+        xax^{-1}=a.
+      \]</p>
+      <p>右乘 \(x\)，得到 \(xa=ax\)。反过来若 \(xa=ax\)，右乘 \(x^{-1}\)，得到 \(xax^{-1}=a\)。</p>
+      <p>所以轨道-稳定化子定理给出</p>
+      <p>\[
+        |\operatorname{Cl}(a)|=[G:C_G(a)].
+      \]</p>
+      <p>把 \(G\) 按共轭类分解，就得到类方程</p>
+      <p>\[
+        |G|=|Z(G)|+\sum_i [G:C_G(a_i)],
+      \]</p>
+      <p>其中 \(a_i\) 从非中心共轭类中各取一个代表。类方程常用于证明有限 \(p\)-群中心非平凡，也用于分析小阶非阿贝尔群。</p>
+
+      <h2>应用三：陪集作用与指数</h2>
+      <p>设 \(H&lt;G\)，让 \(G\) 作用在左陪集集合 \(G/H\) 上：</p>
+      <p>\[
+        g\cdot(xH)=(gx)H.
+      \]</p>
+      <p>这是良定义的，因为若 \(xH=yH\)，则 \(y^{-1}x\in H\)，从而</p>
+      <p>\[
+        (gy)^{-1}(gx)=y^{-1}x\in H,
+      \]</p>
+      <p>所以 \((gx)H=(gy)H\)。</p>
+      <p>点 \(H\in G/H\) 的稳定化子是 \(H\) 本身。因为</p>
+      <p>\[
+        g\cdot H=gH=H
+        \iff
+        g\in H.
+      \]</p>
+      <p>它的轨道是整个 \(G/H\)，因为任意陪集 \(xH\) 都等于 \(x\cdot H\)。轨道-稳定化子定理于是给出</p>
+      <p>\[
+        |G/H|=[G:H],
+      \]</p>
+      <p>并且在有限情形下回到拉格朗日定理的形式</p>
+      <p>\[
+        |G|=|H|\,[G:H].
+      \]</p>
+      <p>这说明轨道-稳定化子定理并不是孤立公式，而是把陪集、指数、拉格朗日定理都纳入群作用语言中。</p>
+
+      <h2>应用四：计数问题中的“除以对称性”</h2>
+      <p>在组合计数里，我们常常想把由对称变换得到的对象视为同一种。例如项链旋转、正方形染色、图形翻转，背后都是某个群作用在方案集合上。</p>
+      <p>轨道就是“本质不同的方案”，稳定化子就是“保持某个方案不变的对称性”。轨道-稳定化子定理告诉我们：如果某个方案拥有更多内部对称性，那么它所在的轨道就更小；如果一个方案几乎没有对称性，那么它的轨道就更大。</p>
+      <p>这正是 Burnside 引理和 Polya 计数的基础直觉。它们进一步把所有轨道的数量写成固定点数量的平均值，但最底层的结构仍然是轨道与稳定化子之间的互补关系。</p>
+
+      <h2>小结</h2>
+      <p>轨道-稳定化子定理的核心可以压缩成一句话：</p>
+      <p>\[
+        \text{群的大小}=\text{固定点的对称性大小}\times\text{点能到达的位置数量}.
+      \]</p>
+      <p>它告诉我们，群作用不是单纯的“元素移动点”，而是一种把几何直觉、陪集结构和计数公式连接起来的语言。学会它之后，共轭类、类方程、对称图形、染色计数、陪集作用都会变得像同一件事的不同侧面。</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Young Zhang</span>
+      <a href="https://github.com/Young-Zhang416/Young-Zhang416.github.io">GitHub</a>
+    </footer>
+    <script src="../assets/js/site-insights.js?v=insights-20260617" defer></script>
+    <script src="../assets/js/site-effects.js?v=effects-20260617" defer></script>
+  </body>
+</html>

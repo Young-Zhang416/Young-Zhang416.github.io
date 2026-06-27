@@ -131,6 +131,14 @@
       "url": "posts/group-actions.html",
       "description": "博客文章：群作用、轨道稳定子、共轭作用、类方程和 Burnside 引理。",
       "tags": ["html", "article"]
+    },
+    {
+      "id": "res-orbit-stabilizer",
+      "label": "轨道-稳定化子定理",
+      "kind": "resource",
+      "url": "posts/orbit-stabilizer-theorem.html",
+      "description": "博客文章：轨道、稳定化子、轨道-稳定化子定理及其应用场景。",
+      "tags": ["html", "article"]
     }
   ],
   "links": [
@@ -151,6 +159,7 @@
     { "source": "lagrange-theorem", "target": "res-cosets-lagrange", "label": "article" },
     { "source": "normal-subgroup", "target": "res-normal-subgroups", "label": "article" },
     { "source": "isomorphism-theorems", "target": "res-isomorphism-theorems", "label": "article" },
-    { "source": "group-action", "target": "res-group-actions", "label": "article" }
+    { "source": "group-action", "target": "res-group-actions", "label": "article" },
+    { "source": "orbit-stabilizer", "target": "res-orbit-stabilizer", "label": "article" }
   ]
 }

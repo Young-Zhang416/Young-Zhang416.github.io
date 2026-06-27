@@ -133,6 +133,14 @@
       "tags": ["html", "article"]
     },
     {
+      "id": "res-orbit-stabilizer",
+      "label": "轨道-稳定化子定理",
+      "kind": "resource",
+      "url": "posts/orbit-stabilizer-theorem.html",
+      "description": "博客文章：轨道、稳定化子、轨道-稳定化子定理及其应用场景。",
+      "tags": ["html", "article"]
+    },
+    {
       "id": "res-category",
       "label": "抽象代数分类页",
       "kind": "resource",
@@ -185,6 +193,7 @@
     { "source": "normal-subgroup", "target": "res-normal-subgroups", "label": "article" },
     { "source": "isomorphism-theorems", "target": "res-isomorphism-theorems", "label": "article" },
     { "source": "group-action", "target": "res-group-actions", "label": "article" },
+    { "source": "orbit-stabilizer", "target": "res-orbit-stabilizer", "label": "article" },
     { "source": "abstract-algebra", "target": "res-example-md", "label": "note" },
     { "source": "abstract-algebra", "target": "res-example-pdf", "label": "paper" },
     { "source": "group-theory", "target": "res-wikipedia-group", "label": "reference" }

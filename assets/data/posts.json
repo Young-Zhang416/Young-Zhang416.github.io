@@ -1,6 +1,14 @@
 {
-  "generatedAt": "2026-06-19",
+  "generatedAt": "2026-06-27",
   "posts": [
+    {
+      "title": "轨道-稳定化子定理",
+      "url": "posts/orbit-stabilizer-theorem.html",
+      "date": "2026-06-27",
+      "category": "抽象代数",
+      "words": 2402,
+      "readingMinutes": 6
+    },
     {
       "title": "群的同构定理",
       "url": "posts/group-isomorphism-theorems.html",
